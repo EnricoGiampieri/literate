@@ -48,6 +48,14 @@ and error output (stderr) and represent them accordingly
 import sys
 print("capture this line!", file=sys.stderr)
 
+"""the proper docstrings of functions or classes are not processed right now
+"""
+
+def my_fun():
+    """this function does nothing
+    """
+    pass
+
 """it can also capture matplotlib figures on the fly, maintaining all the
 configurazione in the appropriate way"""
 
@@ -85,4 +93,7 @@ if a:
 
 else:
     print('False')
+
+
+
 
