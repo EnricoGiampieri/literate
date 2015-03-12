@@ -26,12 +26,9 @@ class MyPylabShow(object):
         import pylab
         self.last_drawn = []
         # figs = list(map(pylab.figure, pylab.get_fignums()))
-
         fig = pylab.gcf()
-        # print(id(fig))
         file_descriptor = BytesIO()
         fig.savefig(file_descriptor, format='png')
-        # file_descriptor.getvalue()
         self.last_drawn.append(file_descriptor)
 
     def pop(self):
@@ -55,19 +52,9 @@ class MyPylabShow(object):
         exec("import pylab as {}\n".format(pylab_name), glob)
         old_pylab_show = glob[pylab_name].show
         old_figure_show = glob[pylab_name].Figure.show
-        # TODO: replace also this value?
-        # matplotlib.pyplot._show
         old_pyplot_show = glob[pylab_name].matplotlib.pyplot.show
 
-        # exec('from pylab import show as __literate_show\n', glob)
-        # temp_show = glob['__literate_show']
-        # exec('del __literate_show\n', glob)
         replaced = {}
-        # for name, value in glob.items():
-        #     if value in [old_pylab_show, old_figure_show, temp_show]:
-        #         replaced[name] = value
-        #         glob[name] = self
-
         glob[pylab_name].show = self
         glob[pylab_name].Figure.show = self
         glob[pylab_name].matplotlib.pyplot.show = self
@@ -298,9 +285,10 @@ class CodeGroup(object):
             # store it for later
             if indent_level == 0:
                 # have to check for decorators
-                # FIXME: this do not join consecutive blocks like if else!
                 if (not last_group) or is_decorator(last_group):
                     last_group.extend(line)
+                # now I check if the block is the continuation
+                # of a previous one
                 elif group_cls(line).is_continued_block():
                     last_group.extend(line)
                 else:
@@ -349,7 +337,6 @@ def run_file(input_file, output_dir):
         imported_modules = set()
         for key, value in glob.items():
             if type(value) == type(pylab):
-                # if value.__name__ not in sys.builtin_module_names:
                 imported_modules.add(value)
         for module in imported_modules:
             pass  # print(module.__name__)
@@ -367,15 +354,6 @@ def run_file(input_file, output_dir):
     print("COMPLETED")
 
 # %%
-
-#code = "if True:\n\tpass\nelse:\n\tpass\n"
-#origin = StringIO(code).readline
-#groups = CodeGroup.iterate_groups_from_source(origin)
-#groups = list(groups)
-#g1= groups[1]
-#g1.lines
-#g1.is_continued_block()
-#%%
 
 import unittest
 source_test_1 = '''
