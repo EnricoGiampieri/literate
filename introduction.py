@@ -60,16 +60,29 @@ fig.show()
 """if external libraries are used, they interact in the expected way
 """
 
-import seaborn as sns
+
+#import seaborn as sns
 #sns.set(style="ticks")
 
-df = sns.load_dataset("anscombe")
-sns.lmplot("x", "y", col="dataset", hue="dataset", data=df,
-           col_wrap=2, ci=None, palette="muted", size=4,
-           scatter_kws={"s": 50, "alpha": 1})
+#df = sns.load_dataset("anscombe")
+#sns.lmplot("x", "y", col="dataset", hue="dataset", data=df,
+#           col_wrap=2, ci=None, palette="muted", size=4,
+#           scatter_kws={"s": 50, "alpha": 1})
 
 """to show the plot it is necessary to explicitly call the show method,
 no shortcut available!
 """
 pylab.show()
+
+
+"""how does it behave toward continued groups?
+""";
+
+a = False
+if a:
+    print('True')
+
+
+else:
+    print('False')
 
