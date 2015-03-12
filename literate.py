@@ -147,6 +147,7 @@ class CodeGroup(object):
 
     def set_mpl_agg(self):
         if not self.globals:
+            exec('__name__ = "__main__"', self.globals)
             exec("import matplotlib as __mpl__literate__\n", self.globals)
             exec("__mpl__literate__.use('Agg')\n", self.globals)
             exec("del __mpl__literate__", self.globals)
@@ -240,8 +241,8 @@ class CodeGroup(object):
 
         if "standard error" in self.results:
             if self.results["standard error"]:
-                compiled_rst += ".. warning:: Standard Error\n\n"
-                for line in self.results["Standard Error"].split('\n'):
+                compiled_rst += ".. warning::\n\n"
+                for line in self.results["standard error"].split('\n'):
                     compiled_rst += "    "+line+'\n'
         if "exceptions generated" in self.results:
             if self.results["exceptions generated"]:
@@ -343,6 +344,13 @@ with open(filename_complete) as file:
     # execution, it will have all the generated figures.
     import pylab
     pylab.close('all')
+    imported_modules = set()
+    for key, value in glob.items():
+        if type(value) == type(pylab):
+            # if value.__name__ not in sys.builtin_module_names:
+            imported_modules.add(value)
+    for module in imported_modules:
+        print(module.__name__)
 
 # %% Compilation of the code to RST and then to HTML
 
@@ -415,7 +423,7 @@ class test_Group(unittest.TestCase):
         self.assertEqual(res['generated figures'], [])
         self.assertEqual(res['exceptions generated'], None)
 
-    def test_simple_exception_output(self):
+    def no_test_simple_exception_output(self):
         code = "raise ValueError('error')\n"
         groups = self.generate_groups(code)
         group0 = list(groups)[0]
@@ -429,6 +437,13 @@ class test_Group(unittest.TestCase):
         e = res['exceptions generated']
         self.assertEqual(e.args, ('error', ))
         self.assertIsInstance(e, ValueError)
+
+    def test_main_section(self):
+        code = "if __name__ == '__main__':\n\tprint(5)\n"
+        groups = self.generate_groups(code)
+        group0 = list(groups)[0]
+        res = group0.execute({}, MyPylabShow())
+        self.assertEqual(res['standard output'], '5\n')
 
 
 if __name__ == '__main__':
