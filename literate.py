@@ -13,6 +13,7 @@ from itertools import groupby
 from contextlib import contextmanager
 import sys
 from docutils.core import publish_parts
+import os
 
 
 # %%
@@ -340,7 +341,8 @@ def run_file(input_file, output_dir):
                 imported_modules.add(value)
         for module in imported_modules:
             pass  # print(module.__name__)
-
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
     filename_complete_rst = output_dir+'compiled.rst'
     compiled_rst = "\n".join(str(group.compile(output_dir))
                              for group in groups)
