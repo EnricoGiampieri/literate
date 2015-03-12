@@ -78,6 +78,7 @@ def _evaluate_indent_variation(token_seq, **kwargs):
     down = sum(token.type == tokenize.DEDENT for token in token_seq)
     return up-down
 
+
 def _is_continued_block(token_line):
     """this recognize if the block is an else or similar, that follow
     another block even if it is on the same line.
@@ -104,8 +105,33 @@ def _is_continued_block(token_line):
             return False
     return False
 
-# %%
 
+def _is_docstring(token_line):
+    """consider a docstring a string isolated from the rest
+    without lines of codes around, but possible with comments.
+    return the content or an empty string if invalid.
+    if the string is empty, it will not consider it as valid
+    """
+    is_string = True
+    content = ""
+    for token in token_line:
+        if token.type not in [tokenize.INDENT,
+                              tokenize.DEDENT,
+                              tokenize.COMMENT,
+                              tokenize.STRING,
+                              tokenize.NEWLINE,
+                              tokenize.NL,
+                              tokenize.ENCODING,
+                              tokenize.ENDMARKER,
+                              ]:
+            is_string = False
+            break
+        elif token.type == tokenize.STRING:
+            content += eval(token.string)
+    return content if is_string else ""
+
+
+# %%
 class CodeGroup(object):
     """this is the main class, responsible for holding the code
     and executing it
@@ -202,23 +228,7 @@ class CodeGroup(object):
         return the content or an empty string if invalid.
         if the string is empty, it will not consider it as valid
         """
-        is_string = True
-        content = ""
-        for token in self.lines:
-            if token.type not in [tokenize.INDENT,
-                                  tokenize.DEDENT,
-                                  tokenize.COMMENT,
-                                  tokenize.STRING,
-                                  tokenize.NEWLINE,
-                                  tokenize.NL,
-                                  tokenize.ENCODING,
-                                  tokenize.ENDMARKER,
-                                  ]:
-                is_string = False
-                break
-            elif token.type == tokenize.STRING:
-                content += eval(token.string)
-        return content if is_string else ""
+        return _is_docstring(self.lines)
 
     def compile(self, output_dir):
         """compile the executed code into rst
