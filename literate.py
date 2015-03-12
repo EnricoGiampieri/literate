@@ -9,28 +9,10 @@ Created on Tue Feb 10 20:34:09 2015
 import itertools as it
 import tokenize
 from io import StringIO, BytesIO
-import logging
 from itertools import groupby
 from contextlib import contextmanager
 import sys
 from docutils.core import publish_parts
-
-# %%
-# get the general level logger, or a specific one if I put its name in
-logger = logging.getLogger('base logger')
-# create console handler and set level to debug
-handler1 = logging.StreamHandler()
-handler2 = logging.FileHandler('logging.log', 'w')
-# create formatter
-t = '%(asctime)s - %(process)d - %(levelname)s - %(name)s - %(message)s'
-formatter = logging.Formatter(t)
-# add formatter to handlers
-handler1.setFormatter(formatter)
-handler2.setFormatter(formatter)
-# add handlers to logger
-logger.addHandler(handler1)
-logger.addHandler(handler2)
-logger.setLevel(logging.ERROR)
 
 
 # %%
@@ -76,15 +58,15 @@ class MyPylabShow(object):
         # TODO: replace also this value?
         # matplotlib.pyplot._show
         old_pyplot_show = glob[pylab_name].matplotlib.pyplot.show
-        exec('from pylab import show as __literate_show\n', glob)
-        temp_show = glob['__literate_show']
-        exec('del __literate_show\n', glob)
 
+        # exec('from pylab import show as __literate_show\n', glob)
+        # temp_show = glob['__literate_show']
+        # exec('del __literate_show\n', glob)
         replaced = {}
-        #for name, value in glob.items():
-        #    if value in [old_pylab_show, old_figure_show, temp_show]:
-        #        replaced[name] = value
-        #        glob[name] = self
+        # for name, value in glob.items():
+        #     if value in [old_pylab_show, old_figure_show, temp_show]:
+        #         replaced[name] = value
+        #         glob[name] = self
 
         glob[pylab_name].show = self
         glob[pylab_name].Figure.show = self
@@ -168,10 +150,10 @@ class CodeGroup(object):
             # TODO: this is not really giving me the information I want,
             # TODO: search a better method
             except Exception as e:
-                #if isinstance(e, KeyboardInterrupt):
+                # if isinstance(e, KeyboardInterrupt):
                 raise e
-                #exc_type, exc_value, exc_traceback = sys.exc_info()
-                #exceptions = e
+                # exc_type, exc_value, exc_traceback = sys.exc_info()
+                # exceptions = e
             # take the output results out of the output cage
             out = out_err[0].getvalue()
             err = out_err[1].getvalue()
@@ -223,7 +205,33 @@ class CodeGroup(object):
                 content += eval(token.string)
         return content if is_string else ""
 
-    def compile(self):
+    def is_continued_block(self):
+        """this recognize if the block is an else or similar, that follow
+        another block even if it is on the same line.
+
+        This should be a separate function at a certain point...
+        """
+        for token in self.lines:
+            if token.type in [tokenize.INDENT,
+                              tokenize.DEDENT,
+                              tokenize.COMMENT,
+                              tokenize.NEWLINE,
+                              tokenize.NL,
+                              tokenize.ENCODING,
+                              tokenize.ENDMARKER,
+                              ]:
+                continue
+            elif token.type == tokenize.NAME:
+                name = token.string
+                if name in ['elif', 'else', 'except', 'finally']:
+                    return True
+                else:
+                    return False
+            else:
+                return False
+        return False
+
+    def compile(self, output_dir):
         """compile the executed code into rst
         """
         content = self.is_docstring()
@@ -231,8 +239,6 @@ class CodeGroup(object):
             return content
 
         compiled_rst = ".. code:: python\n\n"
-
-
         indented_lines = ["    "+line for line in str(self).split('\n')]
         compiled_rst += "\n".join(indented_lines)
 
@@ -257,9 +263,8 @@ class CodeGroup(object):
                     compiled_rst += "    "+line+'\n'
         if "generated figures" in self.results:
             for figure_bytes in self.results["generated figures"]:
-                # TODO: in here the image should be saved instead
                 index = self.get_index()
-                f_name = "figure_{}.png".format(index)
+                f_name = output_dir+"figure_{}.png".format(index)
                 with open(f_name, 'wb') as file:
                     file.write(figure_bytes.getvalue())
 
@@ -293,14 +298,17 @@ class CodeGroup(object):
             # store it for later
             if indent_level == 0:
                 # have to check for decorators
-                if last_group and not is_decorator(last_group):
+                # FIXME: this do not join consecutive blocks like if else!
+                if (not last_group) or is_decorator(last_group):
+                    last_group.extend(line)
+                elif group_cls(line).is_continued_block():
+                    last_group.extend(line)
+                else:
                     new_group = group_cls(last_group, last_created_group)
                     last_created_group = new_group
                     yield new_group
-
                     last_group = line.copy()
-                else:
-                    last_group.extend(line)
+
             # otherwise put it in the current group
             else:
                 last_group.extend(line)
@@ -317,56 +325,57 @@ class CodeGroup(object):
         for group in groups:
             yield group
 
-# %%
-data_dir = '/home/PERSONALE/enrico.giampieri2/progetti/literate.py/'
-filename_i = 'introduction.py'
-filename_o = 'introduction.html'
-filename_complete = data_dir+filename_i
-with open(filename_complete) as file:
-    origins = file.readline
-    groups = CodeGroup.iterate_groups_from_source(origins)
-    groups = list(groups)
-    glob = {}
-
-    pylab_show_cage = MyPylabShow()
-    for group in groups:
-        group.execute(glob, pylab_show_cage)
-        print(group.get_index())
-        print('-------------------------')
-        print(str(group))
-        print('-------------------------')
-        print("docstring?:", group.is_docstring())
-        print('-------------------------')
-        print(group.results)
-        print('=========================')
-    # close all the obtained figures, as the pylab act as a singleton
-    # and stores them. i you launch any code that use pylab after the
-    # execution, it will have all the generated figures.
-    import pylab
-    pylab.close('all')
-    imported_modules = set()
-    for key, value in glob.items():
-        if type(value) == type(pylab):
-            # if value.__name__ not in sys.builtin_module_names:
-            imported_modules.add(value)
-    for module in imported_modules:
-        print(module.__name__)
-
-# %% Compilation of the code to RST and then to HTML
-
-filename_complete = data_dir+filename_o
-compiled_rst = "\n".join(str(group.compile()) for group in groups)
-H = publish_parts(compiled_rst, writer_name='html')['whole']#['html_body']
-with open(filename_complete, 'wt') as html_file:
-    print(H, file=html_file)
-
-print("TERMINATO!!!")
-
-#data_uri = open(BytesIO, 'rb').read().encode('base64').replace('\n', '')
-#img_tag = '<img src="data:image/png;base64,{0}">'.format(data_uri)
-#print(img_tag)
 
 # %%
+def run_file(input_file, output_dir):
+    with open(input_file) as file:
+        origins = file.readline
+        groups = CodeGroup.iterate_groups_from_source(origins)
+        groups = list(groups)
+        glob = {}
+
+        pylab_show_cage = MyPylabShow()
+        for group in groups:
+            group.execute(glob, pylab_show_cage)
+            # print(str(group))
+            # print('-------------------------')
+            # print(group.results)
+            # print('=========================')
+        # close all the obtained figures, as the pylab act as a singleton
+        # and stores them. i you launch any code that use pylab after the
+        # execution, it will have all the generated figures.
+        import pylab
+        pylab.close('all')
+        imported_modules = set()
+        for key, value in glob.items():
+            if type(value) == type(pylab):
+                # if value.__name__ not in sys.builtin_module_names:
+                imported_modules.add(value)
+        for module in imported_modules:
+            pass  # print(module.__name__)
+
+    filename_complete_rst = output_dir+'compiled.rst'
+    compiled_rst = "\n".join(str(group.compile(output_dir))
+                             for group in groups)
+    with open(filename_complete_rst, 'wt') as rst_file:
+        print(compiled_rst, file=rst_file)
+
+    filename_complete_html = output_dir+'compiled.html'
+    H = publish_parts(compiled_rst, writer_name='html')['whole']
+    with open(filename_complete_html, 'wt') as html_file:
+        print(H, file=html_file)
+    print("COMPLETED")
+
+# %%
+
+#code = "if True:\n\tpass\nelse:\n\tpass\n"
+#origin = StringIO(code).readline
+#groups = CodeGroup.iterate_groups_from_source(origin)
+#groups = list(groups)
+#g1= groups[1]
+#g1.lines
+#g1.is_continued_block()
+#%%
 
 import unittest
 source_test_1 = '''
@@ -379,6 +388,33 @@ a = 5
 """docstring"""
 
 "not docstring"; a = 5
+'''
+
+source_test_if_else = '''
+if False:
+    pass
+elif 0:
+    pass
+else:
+    pass
+'''
+
+source_test_for_else = '''
+for i in range(1):
+    pass
+else:
+    pass
+'''
+
+source_test_try_except = '''
+try:
+    pass
+except:
+    pass
+else:
+    pass
+finally:
+    pass
 '''
 
 
@@ -431,8 +467,8 @@ class test_Group(unittest.TestCase):
         self.assertEqual(res['standard output'], '')
         # TODO: check for what is shown in the standard error
         # when an exception is raised
-        #err = res['standard error']
-        #self.assertEqual(err, '')
+        # err = res['standard error']
+        # self.assertEqual(err, '')
         self.assertEqual(res['generated figures'], [])
         e = res['exceptions generated']
         self.assertEqual(e.args, ('error', ))
@@ -445,9 +481,29 @@ class test_Group(unittest.TestCase):
         res = group0.execute({}, MyPylabShow())
         self.assertEqual(res['standard output'], '5\n')
 
+    def test_grouping_if_else(self):
+        groups = self.generate_groups(source_test_if_else)
+        groups = list(groups)
+        self.assertEqual(len(groups), 1)
+
+    def test_grouping_for_else(self):
+        groups = self.generate_groups(source_test_for_else)
+        groups = list(groups)
+        self.assertEqual(len(groups), 1)
+
+    def test_grouping_try_except(self):
+        groups = self.generate_groups(source_test_try_except)
+        groups = list(groups)
+        self.assertEqual(len(groups), 1)
+
 
 if __name__ == '__main__':
+    b_dir = '/home/PERSONALE/enrico.giampieri2/progetti/literate.py/'
+    i_file = b_dir + 'introduction.py'
+    o_dir = b_dir + 'compile/'
+    run_file(i_file, o_dir)
     unittest.main()
+
 
 # %%
 '''
