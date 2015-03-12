@@ -78,6 +78,33 @@ def _evaluate_indent_variation(token_seq, **kwargs):
     down = sum(token.type == tokenize.DEDENT for token in token_seq)
     return up-down
 
+def _is_continued_block(token_line):
+    """this recognize if the block is an else or similar, that follow
+    another block even if it is on the same line.
+
+    This should be a separate function at a certain point...
+    """
+    for token in token_line:
+        if token.type in [tokenize.INDENT,
+                          tokenize.DEDENT,
+                          tokenize.COMMENT,
+                          tokenize.NEWLINE,
+                          tokenize.NL,
+                          tokenize.ENCODING,
+                          tokenize.ENDMARKER,
+                          ]:
+            continue
+        elif token.type == tokenize.NAME:
+            name = token.string
+            if name in ['elif', 'else', 'except', 'finally']:
+                return True
+            else:
+                return False
+        else:
+            return False
+    return False
+
+# %%
 
 class CodeGroup(object):
     """this is the main class, responsible for holding the code
@@ -193,32 +220,6 @@ class CodeGroup(object):
                 content += eval(token.string)
         return content if is_string else ""
 
-    def is_continued_block(self):
-        """this recognize if the block is an else or similar, that follow
-        another block even if it is on the same line.
-
-        This should be a separate function at a certain point...
-        """
-        for token in self.lines:
-            if token.type in [tokenize.INDENT,
-                              tokenize.DEDENT,
-                              tokenize.COMMENT,
-                              tokenize.NEWLINE,
-                              tokenize.NL,
-                              tokenize.ENCODING,
-                              tokenize.ENDMARKER,
-                              ]:
-                continue
-            elif token.type == tokenize.NAME:
-                name = token.string
-                if name in ['elif', 'else', 'except', 'finally']:
-                    return True
-                else:
-                    return False
-            else:
-                return False
-        return False
-
     def compile(self, output_dir):
         """compile the executed code into rst
         """
@@ -290,7 +291,7 @@ class CodeGroup(object):
                     last_group.extend(line)
                 # now I check if the block is the continuation
                 # of a previous one
-                elif group_cls(line).is_continued_block():
+                elif _is_continued_block(line):
                     last_group.extend(line)
                 else:
                     new_group = group_cls(last_group, last_created_group)
