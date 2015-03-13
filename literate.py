@@ -73,7 +73,9 @@ class MyPylabShow(object):
 
 # %%
 # DEDENT and INDENT are at the beginning of the line, but maybe after comments
-def _evaluate_indent_variation(token_seq, **kwargs):
+def _evaluate_indent_variation(token_seq):
+    """evaluate how much the indentation change with this line of code
+    """
     up = sum(token.type == tokenize.INDENT for token in token_seq)
     down = sum(token.type == tokenize.DEDENT for token in token_seq)
     return up-down
@@ -129,6 +131,32 @@ def _is_docstring(token_line):
         elif token.type == tokenize.STRING:
             content += eval(token.string)
     return content if is_string else ""
+
+
+# %%
+def _generate_logical_lines(readline):
+    """takes a readline from a file and generates a sequence of
+    logically complete lines of code.
+    """
+    # split the lines in tokens
+    tokens = list(tokenize.generate_tokens(readline))
+    # NEWLINE is the interruption of a logical line
+    # NL is the end of a physical line withuot ending the logical one
+    is_complete_line = lambda token: token.type == tokenize.NEWLINE
+    res = list(list(l[1]) for l in groupby(tokens, is_complete_line))
+    # these are the logical lines, ending with an NL
+    lines = [i0+i1 for i0, i1 in zip(res[::2], res[1::2])]
+    return lines
+
+code='''
+def pippo():
+    #pass
+    "docstring"
+    pass
+'''
+
+lines = _generate_logical_lines(StringIO(code).readline)
+list(map(_is_docstring, lines))
 
 
 # %%
@@ -188,11 +216,11 @@ class CodeGroup(object):
             exceptions = None
             try:
                 exec(str(self), global_dict)
-            # TODO: this is not really giving me the information I want,
-            # TODO: search a better method
             except Exception as e:
-                # if isinstance(e, KeyboardInterrupt):
-                raise e
+                s = ("On block number {}, with sourcecode:\n'''\n{}'''\n" +
+                     " the following exception has been raised:\n")
+                s = s.format(self.get_index(), str(self))
+                raise type(e)(s + repr(e)).with_traceback(sys.exc_info()[2])
                 # exc_type, exc_value, exc_traceback = sys.exc_info()
                 # exceptions = e
             # take the output results out of the output cage
@@ -270,29 +298,18 @@ class CodeGroup(object):
                 compiled_rst += ".. image:: "+str(f_name)+"\n"
         return compiled_rst
 
-    @staticmethod
-    def _iterate_input_logical_lines(readline):
-        # split the lines in tokens
-        tokens = list(tokenize.generate_tokens(readline))
-        # NEWLINE is the interruption of a logical line
-        # NL is the end of a physical line withuot ending the logical one
-        is_complete_line = lambda token: token.type == tokenize.NEWLINE
-        res = list(list(l[1]) for l in groupby(tokens, is_complete_line))
-        # these are the logical lines, ending with an NL
-        lines = [i0+i1 for i0, i1 in zip(res[::2], res[1::2])]
+    @classmethod
+    def iterate_groups_from_source(group_cls, readline):
+        lines = _generate_logical_lines(readline)
         # for each line, determins its level of variation of indentation
         var_indent_lev = map(_evaluate_indent_variation, lines)
         # accumulate to obtain the total one
         indent_levels = it.accumulate(var_indent_lev)
-        for line, indent_level in zip(lines, indent_levels):
-            yield line, indent_level
-
-    @classmethod
-    def _iterate_groups(group_cls, lines):
+        # this checks is the line starts with a decorator
         is_decorator = lambda lg: lg[-1].line.strip().startswith('@')
         last_group = []
         last_created_group = None
-        for line, indent_level in lines:
+        for line, indent_level in zip(lines, indent_levels):
             # if is a flat line, either start or if it is a decorator
             # store it for later
             if indent_level == 0:
@@ -308,7 +325,6 @@ class CodeGroup(object):
                     last_created_group = new_group
                     yield new_group
                     last_group = line.copy()
-
             # otherwise put it in the current group
             else:
                 last_group.extend(line)
@@ -317,13 +333,6 @@ class CodeGroup(object):
             new_group = group_cls(last_group, last_created_group)
             last_created_group = new_group
             yield new_group
-
-    @classmethod
-    def iterate_groups_from_source(group_cls, readline):
-        lines = group_cls._iterate_input_logical_lines(readline)
-        groups = group_cls._iterate_groups(lines)
-        for group in groups:
-            yield group
 
 
 # %%
@@ -408,6 +417,13 @@ finally:
     pass
 '''
 
+source_grouping_decorator = '''
+#comment
+@contextmanager
+def function():
+    yield 1
+'''
+
 
 class test_Group(unittest.TestCase):
 
@@ -450,20 +466,12 @@ class test_Group(unittest.TestCase):
         self.assertEqual(res['generated figures'], [])
         self.assertEqual(res['exceptions generated'], None)
 
-    def no_test_simple_exception_output(self):
+    def test_simple_exception(self):
         code = "raise ValueError('error')\n"
         groups = self.generate_groups(code)
         group0 = list(groups)[0]
-        res = group0.execute({}, MyPylabShow())
-        self.assertEqual(res['standard output'], '')
-        # TODO: check for what is shown in the standard error
-        # when an exception is raised
-        # err = res['standard error']
-        # self.assertEqual(err, '')
-        self.assertEqual(res['generated figures'], [])
-        e = res['exceptions generated']
-        self.assertEqual(e.args, ('error', ))
-        self.assertIsInstance(e, ValueError)
+        with self.assertRaises(ValueError):
+            group0.execute({}, MyPylabShow())
 
     def test_main_section(self):
         code = "if __name__ == '__main__':\n\tprint(5)\n"
@@ -484,6 +492,11 @@ class test_Group(unittest.TestCase):
 
     def test_grouping_try_except(self):
         groups = self.generate_groups(source_test_try_except)
+        groups = list(groups)
+        self.assertEqual(len(groups), 1)
+
+    def test_grouping_decorator(self):
+        groups = self.generate_groups(source_grouping_decorator)
         groups = list(groups)
         self.assertEqual(len(groups), 1)
 

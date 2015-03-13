@@ -48,7 +48,13 @@ and error output (stderr) and represent them accordingly
 import sys
 print("capture this line!", file=sys.stderr)
 
-"""the proper docstrings of functions or classes are not processed right now
+"""It does not catch exceptions. Your code is supposed to work correctly.
+If your code run, then it should be compiled without any problems.
+Debugging an error from the sandboxed code it extremely hard,
+so to discourage the practice it raises the exception without any filtering,
+only with a reference to the code source that generate the error.
+
+the proper docstrings of functions or classes are not processed right now
 """
 
 def my_fun():
