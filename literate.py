@@ -158,7 +158,7 @@ class CodeGroup(object):
         """the input should be a list of lists of tokens
 
         ech list is a logical line"""
-        self.lines = block_lines
+        self.tokens = block_lines
         self.previous = previous_block
         self.following = None
         if self.previous is not None:
@@ -174,7 +174,7 @@ class CodeGroup(object):
 
     def __str__(self):
         is_whiteline = lambda s: s == '\\'
-        groups_lines = tokenize.untokenize(self.lines)
+        groups_lines = tokenize.untokenize(self.tokens)
         # remove the superfluous lines at the beginning due
         # to how untokenize work join them together again
         groups_lines = it.dropwhile(is_whiteline, groups_lines.split('\n'))
@@ -245,7 +245,7 @@ class CodeGroup(object):
         return the content or an empty string if invalid.
         if the string is empty, it will not consider it as valid
         """
-        return _is_docstring(self.lines)
+        return _is_docstring(self.tokens)
 
     def compile(self, output_dir):
         """compile the executed code into rst
