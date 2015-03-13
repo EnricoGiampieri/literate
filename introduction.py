@@ -49,7 +49,6 @@ if __name__ == '__main__':
     print("this is inside the main loop")
     print(sys.argv)
 
-sys.exit()
 
 """note that each block of code is represented with a different gray line.
 This is meant to help understand the relationships between the different
