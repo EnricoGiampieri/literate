@@ -148,17 +148,6 @@ def _generate_logical_lines(readline):
     lines = [i0+i1 for i0, i1 in zip(res[::2], res[1::2])]
     return lines
 
-code='''
-def pippo():
-    #pass
-    "docstring"
-    pass
-'''
-
-lines = _generate_logical_lines(StringIO(code).readline)
-list(map(_is_docstring, lines))
-
-
 # %%
 class CodeGroup(object):
     """this is the main class, responsible for holding the code
