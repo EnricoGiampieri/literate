@@ -13,6 +13,8 @@ i can be used as a library, imported by another script, or as a separate program
     python literate.py yourscript.py -optionals -parameters -for -the -script
 
 you can see an example of the results in the compiled_introduction.py directory.
+For offline viewing the html file is suggested, [while for viewing online on GitHub the rst is more appropriate](https://github.com/EnricoGiampieri/literate/blob/master/compiled_introduction.py/introduction.rst).
+The online visualization protocol of GitHub does not support math for rst, but with the html the visualization is correct for formulas.
 
 ## testing
 
