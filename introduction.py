@@ -33,6 +33,14 @@ print("capture this line!")
 does not support any external parameters (but it is soon to come).
 """
 
+"""note that each block of code is represented with a different gray line.
+This is meant to help understand the relationships between the different
+lines and how they are executed together.
+"""
+
+print(1)
+print(2)
+
 """if you need to insert a string literally, you can just put a semicolon ;
 at the end of it. It is equivalnt from the syntax point of view, but
 it will not be recognized as a piece of documentation.
@@ -81,25 +89,25 @@ x = pylab.linspace(0, 10, 101)
 ax.plot(x, x**2)
 fig.show()
 
-"""if external libraries are used, they interact in the expected way
-"""
-
-
-#import seaborn as sns
-#sns.set(style="ticks")
-
-#df = sns.load_dataset("anscombe")
-#sns.lmplot("x", "y", col="dataset", hue="dataset", data=df,
-#           col_wrap=2, ci=None, palette="muted", size=4,
-#           scatter_kws={"s": 50, "alpha": 1})
-
 """to show the plot it is necessary to explicitly call the show method,
 no shortcut available!
 
 but if you already have shown the figure (in this case the the :code:`fig.show()`),
 it will not appear twice
 """
+
 pylab.show()
+
+"""if external libraries are used, they interact in the expected way
+"""
+
+
+import seaborn as sns
+pylab.figure()
+pylab.scatter(pylab.randn(100), pylab.randn(100))
+pylab.show()
+
+
 
 
 """how does it behave toward continued groups?

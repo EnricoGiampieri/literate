@@ -2,7 +2,7 @@
 """
 Created on Tue Feb 10 20:34:09 2015
 
-@author: enrico.giampieri2
+@author: EnricoGiampieri
 """
 
 # %%
@@ -403,9 +403,11 @@ def run_file(input_file, output_dir):
     H = publish_parts(compiled_rst, writer_name='html')['whole']
     with open(filename_complete_html, 'wt') as html_file:
         print(H, file=html_file)
-    print("COMPLETED")
 
 # %%
+# #############################################################################
+# TEST SECTION
+# #############################################################################
 
 import unittest
 source_test_1 = '''
@@ -556,8 +558,4 @@ class test_Group(unittest.TestCase):
         self.assertEqual(lines_expected, lines_obtained)
 
 if __name__ == '__main__':
-    b_dir = '/home/PERSONALE/enrico.giampieri2/progetti/literate.py/'
-    i_file = b_dir + 'introduction.py'
-    o_dir = b_dir + 'compile/'
-    run_file(i_file, o_dir)
     unittest.main()
