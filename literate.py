@@ -139,7 +139,6 @@ def _is_block_start(token_line):
     return False
 
 
-
 # %%
 def _generate_logical_lines(readline):
     """takes a readline from a file and generates a sequence of
@@ -158,7 +157,6 @@ def _generate_logical_lines(readline):
     # these are the logical lines, ending with an NL
     lines = [i0+i1 for i0, i1 in zip(res[::2], res[1::2])]
     return lines
-
 
 
 # %%
@@ -202,8 +200,9 @@ class CodeGroup(object):
                 line_str = eval(str(self.__class__(line)))
                 docstring_text = ".. note::\n\n\t.. code:: python\n\n\t\t"
                 docstring_text += line_str_pre + "\n\n"
-                docstring_text += "\n".join('\t'+internal_line for internal_line in line_str.splitlines())
-                docstring_text += '\n'
+                splitlines = line_str.splitlines()
+                s = "\n".join('\t'+int_line for int_line in splitlines)
+                docstring_text += s + '\n'
                 docstrings.append(docstring_text.replace('\t', '    '))
         return docstrings
 
@@ -558,131 +557,3 @@ if __name__ == '__main__':
     o_dir = b_dir + 'compile/'
     run_file(i_file, o_dir)
     unittest.main()
-
-
-# %%
-'''
-from IPython.display import HTML, display
-from docutils.core import publish_parts
-
-#token_0 = tokenize.TokenInfo(type=tokenize.COMMENT,
-string='# %%', start=(0, 0), end=(0, 0), line='\n')
-
-# remove all the comments, but keep all the block header comment
-tokens_proper = [tok for tok in tokens if (tok.type!=tokenize.COMMENT or
-                                            tok.string.startswith('# %%'))]
-
-
-# %%
-valid_docstrings = []
-plausible_docstring = True
-plausible_seq = []
-for idx, tok in enumerate(tokens_proper):
-    if tok.type in [tokenize.INDENT, tokenize.COMMENT, tokenize.DEDENT]:
-        "the only possible comment left are the block start"
-        plausible_docstring = True
-    elif plausible_docstring and tok.type in [tokenize.NL]:
-        "after a good condition you should ignore the newline"
-        pass
-    elif plausible_docstring and tok.type==tokenize.STRING:
-        plausible_seq.append(tok)
-    elif plausible_docstring and tok.type in [tokenize.NEWLINE]:
-        valid_docstrings.extend(plausible_seq)
-        plausible_seq = []
-        plausible_docstring = False
-    else:
-        plausible_seq = []
-        plausible_docstring = False
-    print(tok)
-    print(plausible_docstring)
-    print(plausible_seq)
-    print()
-
-
-# http://stackoverflow.com/questions/1769332/script-to-remove-python-comments-docstrings
-#( DEDENT+ | INDENT? ) STRING+ COMMENT? NEWLINE
-# %%
-
-for docstring in valid_docstrings:
-    print(docstring.string)
-    print()
-
-text = valid_docstrings[0].string
-# %%
-
-from pygments import highlight
-from pygments.formatters import HtmlFormatter
-from pygments.lexers import get_lexer_by_name
-from IPython.display import HTML, display, display_html
-
-
-lexer = get_lexer_by_name("python", stripall=True)
-formatter = HtmlFormatter(linenos=True, cssclass="source", style='colorful')
-
-H = highlight(text, lexer, formatter)
-print(H)
-HTML(H)
-# %%
-
-
-
-# %%
-H = publish_parts(text, writer_name='html')['html_body']
-print(H)
-HTML(H)
-# %%
-
-from contextlib import contextmanager
-from datetime import datetime
-now = datetime.now
-
-@contextmanager
-def Timer():
-    start = now()
-    yield
-    end = now()-start
-    print(end)
-
-# %%
-
-from modulefinder import ModuleFinder
-finder = ModuleFinder()
-finder.run_script(data_dir+filename)
-
-# %%
-print( 'Loaded modules:')
-for name, mod in finder.modules.items():
-    print( '%s: ' % name,)
-    #keys = mod.globalnames.keys()
-    #print( ','.join(list(keys)[:3]))
-
-#print( '-'*50)
-#print( 'Modules not imported:')
-#print( '\n'.join(finder.badmodules.keys()))
-# %%
-
-from modulefinder import ModuleFinder
-f = ModuleFinder()
-
-# Run the main script
-f.run_script(filename)
-
-# Get names of all the imported modules
-names = list(f.modules.keys())
-
-# Get a sorted list of the root modules imported
-basemods = sorted(set([name.split('.')[0] for name in names]))
-# Print it nicely
-#print("\n".join(basemods) )
-# %%
-for module in basemods[:]:
-    try:
-        module = __import__(module)
-        version = module.__version__
-        name = module.__name__
-        print(name, version)
-    except ImportError:
-        pass
-    except AttributeError:
-        pass
-'''
