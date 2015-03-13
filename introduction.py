@@ -54,13 +54,23 @@ Debugging an error from the sandboxed code it extremely hard,
 so to discourage the practice it raises the exception without any filtering,
 only with a reference to the code source that generate the error.
 
-the proper docstrings of functions or classes are not processed right now
+the proper docstrings of functions or classes are included in the code
+and then rendered afterward. this will allow the system to maintain the
+same properties of the code while showing the correct formatted docstrings.
 """
 
 def my_fun():
-    """this function does nothing
+    """this function does nothing, but has the interesting math property:
+
+    .. math::
+
+        |x| * 0 = |x*0|
     """
-    pass
+    def my_fun2():
+        """nested functions and docstring are handled without problems
+        """
+        pass
+    return my_fun2
 
 """it can also capture matplotlib figures on the fly, maintaining all the
 configurazione in the appropriate way"""

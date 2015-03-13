@@ -80,6 +80,15 @@ def _evaluate_indent_variation(token_seq):
     down = sum(token.type == tokenize.DEDENT for token in token_seq)
     return up-down
 
+_ignorable_tokens = [tokenize.INDENT,
+                     tokenize.DEDENT,
+                     tokenize.COMMENT,
+                     tokenize.NEWLINE,
+                     tokenize.NL,
+                     tokenize.ENCODING,
+                     tokenize.ENDMARKER,
+                     ]
+
 
 def _is_continued_block(token_line):
     """this recognize if the block is an else or similar, that follow
@@ -88,14 +97,7 @@ def _is_continued_block(token_line):
     This should be a separate function at a certain point...
     """
     for token in token_line:
-        if token.type in [tokenize.INDENT,
-                          tokenize.DEDENT,
-                          tokenize.COMMENT,
-                          tokenize.NEWLINE,
-                          tokenize.NL,
-                          tokenize.ENCODING,
-                          tokenize.ENDMARKER,
-                          ]:
+        if token.type in _ignorable_tokens:
             continue
         elif token.type == tokenize.NAME:
             name = token.string
@@ -117,20 +119,25 @@ def _is_docstring(token_line):
     is_string = True
     content = ""
     for token in token_line:
-        if token.type not in [tokenize.INDENT,
-                              tokenize.DEDENT,
-                              tokenize.COMMENT,
-                              tokenize.STRING,
-                              tokenize.NEWLINE,
-                              tokenize.NL,
-                              tokenize.ENCODING,
-                              tokenize.ENDMARKER,
-                              ]:
+        if token.type not in _ignorable_tokens + [tokenize.STRING]:
             is_string = False
             break
         elif token.type == tokenize.STRING:
             content += eval(token.string)
     return content if is_string else ""
+
+
+def _is_block_start(token_line):
+    reversed_line = reversed(token_line)
+    for token in reversed_line:
+        if token.type in _ignorable_tokens:
+            continue
+        elif token.type == tokenize.OP and token.string == ':':
+            return True
+        else:
+            return False
+    return False
+
 
 
 # %%
@@ -151,6 +158,7 @@ def _generate_logical_lines(readline):
     # these are the logical lines, ending with an NL
     lines = [i0+i1 for i0, i1 in zip(res[::2], res[1::2])]
     return lines
+
 
 
 # %%
@@ -177,8 +185,27 @@ class CodeGroup(object):
         else:
             return 1+self.previous.get_index()
 
+    @property
     def lines(self):
         return _generate_logical_lines(self.tokens)
+
+    def extract_docstrings(self):
+        doc_lines = [bool(_is_docstring(line)) for line in self.lines]
+        indexes = range(len(self.lines))
+        docstrings = []
+        for idx, is_doc, line in zip(indexes, doc_lines, self.lines):
+            if is_doc and idx > 0 and not doc_lines[idx-1]:
+                prev_line = self.lines[idx-1]
+                if not _is_block_start(prev_line):
+                    continue
+                line_str_pre = str(self.__class__(prev_line)).strip()
+                line_str = eval(str(self.__class__(line)))
+                docstring_text = ".. note::\n\n\t.. code:: python\n\n\t\t"
+                docstring_text += line_str_pre + "\n\n"
+                docstring_text += "\n".join('\t'+internal_line for internal_line in line_str.splitlines())
+                docstring_text += '\n'
+                docstrings.append(docstring_text.replace('\t', '    '))
+        return docstrings
 
     def __str__(self):
         is_whiteline = lambda s: s == '\\'
@@ -265,6 +292,9 @@ class CodeGroup(object):
         compiled_rst = ".. code:: python\n\n"
         indented_lines = ["    "+line for line in str(self).split('\n')]
         compiled_rst += "\n".join(indented_lines)
+
+        for docstring_group in self.extract_docstrings():
+            compiled_rst += '\n' + docstring_group + '\n'
 
         if self.has_results():
             compiled_rst += '\n\n'
@@ -422,6 +452,23 @@ def function():
 '''
 
 
+source_docstring_extraction = '''
+def f():
+    "first docstring"
+    for i in range(10):
+        """second docstring, multiline,
+        with additional content
+
+        and a line separation
+        """
+        print(i)
+        "not a docstring"
+    for i in range(10):
+        "third and last docstring"
+        pass
+'''
+
+
 class test_Group(unittest.TestCase):
 
     def generate_groups(self, source_code):
@@ -502,7 +549,7 @@ class test_Group(unittest.TestCase):
         groups = self.generate_groups(code)
         code_str = StringIO(code)
         lines_expected = _generate_logical_lines(code_str.readline)
-        lines_obtained = sum([group.lines() for group in groups], [])
+        lines_obtained = sum([group.lines for group in groups], [])
         self.assertEqual(lines_expected, lines_obtained)
 
 if __name__ == '__main__':
