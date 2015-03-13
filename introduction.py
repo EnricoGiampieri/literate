@@ -20,6 +20,7 @@ Any output from the code is captured and printed in the report as verbatim.
 It also tries its best to capture and insert any figure created with
 matplotlib and pylab.
 
+The output is properly formatted as ReStructured Text, including math:
 
 .. math::
 
@@ -29,9 +30,26 @@ matplotlib and pylab.
 
 print("capture this line!")
 
-"""The library execute the script as the main script, even if for now it
-does not support any external parameters (but it is soon to come).
+"""The library execute the script as the main script, and it does
+transmit the parameters given from the command line.
+
+This script has been compiled as::
+
+    python literate.py introduction.py -nope
+
+the script will execute as it was launched with::
+
+    python introduction.py -nope
 """
+
+import sys
+
+
+if __name__ == '__main__':
+    print("this is inside the main loop")
+    print(sys.argv)
+
+sys.exit()
 
 """note that each block of code is represented with a different gray line.
 This is meant to help understand the relationships between the different
@@ -46,14 +64,14 @@ at the end of it. It is equivalnt from the syntax point of view, but
 it will not be recognized as a piece of documentation.
 """
 
-if __name__ == '__main__':
-    print("this is inside the main loop")
+"""this is a regular string, not a formatted one
+""";
 
 """the library should be able to distinguish regulare output (stdout)
 and error output (stderr) and represent them accordingly
 """
 
-import sys
+
 print("capture this line!", file=sys.stderr)
 
 """It does not catch exceptions. Your code is supposed to work correctly.
@@ -109,17 +127,10 @@ pylab.show()
 
 
 
-
-"""how does it behave toward continued groups?
-""";
-
-a = False
-if a:
-    print('True')
-
-
-else:
-    print('False')
+"""
+multiple figures can be plotted all at the same time with a single
+show, as it would be expected
+"""
 
 fig, ax = pylab.subplots(1, 1, figsize=(8, 4))
 x = pylab.linspace(0, 10, 101)
