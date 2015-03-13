@@ -20,17 +20,20 @@ import os
 # this wrap the show function and keeps track of the last created plot
 class MyPylabShow(object):
     def __init__(self):
-        self.fig_index = []
+        self.fig_index = set()
         self.last_drawn = []
 
     def __call__(self, *args, **kwargs):
         import pylab
         self.last_drawn = []
-        # figs = list(map(pylab.figure, pylab.get_fignums()))
-        fig = pylab.gcf()
-        file_descriptor = BytesIO()
-        fig.savefig(file_descriptor, format='png')
-        self.last_drawn.append(file_descriptor)
+        figs = list(map(pylab.figure, pylab.get_fignums()))
+        new_figures = [fig for fig in figs if fig not in self.fig_index]
+        self.fig_index.update(set(figs))
+        # fig = pylab.gcf()
+        for fig in new_figures:
+            file_descriptor = BytesIO()
+            fig.savefig(file_descriptor, format='png')
+            self.last_drawn.append(file_descriptor)
 
     def pop(self):
         res = self.last_drawn
@@ -286,7 +289,7 @@ class CodeGroup(object):
         """
         content = self.is_docstring()
         if content:
-            return content
+            return content + '\n'
 
         compiled_rst = ".. code:: python\n\n"
         indented_lines = ["    "+line for line in str(self).split('\n')]
@@ -315,13 +318,14 @@ class CodeGroup(object):
                 for line in self.results["standard output"].split('\n'):
                     compiled_rst += "    "+line+'\n'
         if "generated figures" in self.results:
-            for figure_bytes in self.results["generated figures"]:
+            figures = self.results["generated figures"]
+            for fig_idx, figure_bytes in enumerate(figures):
                 index = self.get_index()
-                f_name = output_dir+"figure_{}.png".format(index)
+                f_name = output_dir+"figure_{}_{}.png".format(index, fig_idx)
                 with open(f_name, 'wb') as file:
                     file.write(figure_bytes.getvalue())
 
-                compiled_rst += ".. image:: "+str(f_name)+"\n"
+                compiled_rst += ".. image:: "+str(f_name)+"\n\n"
         return compiled_rst
 
     @classmethod

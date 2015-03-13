@@ -95,6 +95,9 @@ fig.show()
 
 """to show the plot it is necessary to explicitly call the show method,
 no shortcut available!
+
+but if you already have shown the figure (in this case the the :code:`fig.show()`),
+it will not appear twice
 """
 pylab.show()
 
@@ -110,6 +113,16 @@ if a:
 else:
     print('False')
 
+fig, ax = pylab.subplots(1, 1, figsize=(8, 4))
+x = pylab.linspace(0, 10, 101)
+ax.plot(x, x**2, color='r')
+
+import numpy as np
+fig, ax = pylab.subplots(1, 1, figsize=(8, 4))
+x = pylab.linspace(0, 10, 101)
+ax.plot(x, np.cos(x), color='g')
+
+pylab.show()
 
 
 
