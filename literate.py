@@ -139,7 +139,11 @@ def _generate_logical_lines(readline):
     logically complete lines of code.
     """
     # split the lines in tokens
-    tokens = list(tokenize.generate_tokens(readline))
+    if callable(readline):
+        tokens = tokenize.generate_tokens(readline)
+    else:
+        tokens = readline
+
     # NEWLINE is the interruption of a logical line
     # NL is the end of a physical line withuot ending the logical one
     is_complete_line = lambda token: token.type == tokenize.NEWLINE
@@ -147,6 +151,7 @@ def _generate_logical_lines(readline):
     # these are the logical lines, ending with an NL
     lines = [i0+i1 for i0, i1 in zip(res[::2], res[1::2])]
     return lines
+
 
 # %%
 class CodeGroup(object):
@@ -171,6 +176,9 @@ class CodeGroup(object):
             return 0
         else:
             return 1+self.previous.get_index()
+
+    def lines(self):
+        return _generate_logical_lines(self.tokens)
 
     def __str__(self):
         is_whiteline = lambda s: s == '\\'
@@ -489,6 +497,13 @@ class test_Group(unittest.TestCase):
         groups = list(groups)
         self.assertEqual(len(groups), 1)
 
+    def test_divide_in_lines(self):
+        code = "if __name__ == '__main__':\n\tprint(5)\n"
+        groups = self.generate_groups(code)
+        code_str = StringIO(code)
+        lines_expected = _generate_logical_lines(code_str.readline)
+        lines_obtained = sum([group.lines() for group in groups], [])
+        self.assertEqual(lines_expected, lines_obtained)
 
 if __name__ == '__main__':
     b_dir = '/home/PERSONALE/enrico.giampieri2/progetti/literate.py/'
