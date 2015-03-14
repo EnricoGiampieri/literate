@@ -1,6 +1,8 @@
 Literate
 =================
 
+.. contents:: :depth: 2
+
 Literate is a simple python script for python 3 to create automated reports.
 
 It is designed to help scientist to create reports to describe their scripts, including the code, resulting output and figures created with matplotlib.
