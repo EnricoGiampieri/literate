@@ -1,3 +1,4 @@
+=================
 Literate
 =================
 
@@ -7,7 +8,7 @@ Literate is a simple python script for python 3 to create automated reports.
 
 It is designed to help scientist to create reports to describe their scripts, including the code, resulting output and figures created with matplotlib.
 
-It employs the RestructuredText syntax to write the report, and try to be as non-intrusive as possible.
+It employs the `RestructuredText <http://docutils.sourceforge.net/docs/user/rst/quickstart.html>`_ syntax to write the report, and try to be as non-intrusive as possible.
 
 The script is executed in a sandbox (or as close as possible to a proper sandbox) that capture all the output to terminal or plot.
 From this it does create a Restructured Text file and a series of images.
