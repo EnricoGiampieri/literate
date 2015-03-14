@@ -51,6 +51,23 @@ The program will chunk it in pieces, convert the free strings in normal text, ex
         
     discussion of the results
 
+with the following result:
+
+.. highlights ::
+
+    usage of the print function
+
+    .. code:: pyhton
+
+        print(2)
+        
+    ::
+
+        2
+        
+    discussion of the results
+
+    
 Testing
 ------------------
 
