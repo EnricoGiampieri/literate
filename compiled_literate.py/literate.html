@@ -1,0 +1,1234 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.12: http://docutils.sourceforge.net/" />
+<title>Literate</title>
+<meta name="author" content="EnricoGiampieri" />
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 7614 2013-02-21 15:55:51Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: grey; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="literate">
+<h1 class="title">Literate</h1>
+<table class="docinfo" frame="void" rules="none">
+<col class="docinfo-name" />
+<col class="docinfo-content" />
+<tbody valign="top">
+<tr><th class="docinfo-name">Author:</th>
+<td>EnricoGiampieri</td></tr>
+</tbody>
+</table>
+<pre class="code python literal-block">
+<span class="comment"># %%</span>
+<span class="keyword namespace">from</span> <span class="name namespace">contextlib</span> <span class="keyword namespace">import</span> <span class="name">contextmanager</span>
+</pre>
+<pre class="code python literal-block">
+<span class="keyword namespace">from</span> <span class="name namespace">docutils.core</span> <span class="keyword namespace">import</span> <span class="name">publish_parts</span>
+</pre>
+<pre class="code python literal-block">
+<span class="keyword namespace">from</span> <span class="name namespace">io</span> <span class="keyword namespace">import</span> <span class="name">StringIO</span><span class="punctuation">,</span> <span class="name">BytesIO</span>
+</pre>
+<pre class="code python literal-block">
+<span class="keyword namespace">from</span> <span class="name namespace">itertools</span> <span class="keyword namespace">import</span> <span class="name">groupby</span><span class="punctuation">,</span> <span class="name">dropwhile</span><span class="punctuation">,</span> <span class="name">accumulate</span><span class="punctuation">,</span> <span class="name">takewhile</span>
+</pre>
+<pre class="code python literal-block">
+<span class="keyword namespace">import</span> <span class="name namespace">os</span>
+</pre>
+<pre class="code python literal-block">
+<span class="keyword namespace">import</span> <span class="name namespace">sys</span>
+</pre>
+<pre class="code python literal-block">
+<span class="keyword namespace">import</span> <span class="name namespace">tokenize</span>
+</pre>
+<pre class="code python literal-block">
+<span class="comment"># %%</span>
+<span class="comment"># this wrap the show function and keeps track of the last created plot</span>
+<span class="keyword">class</span> <span class="name class">MyPylabShow</span><span class="punctuation">(</span><span class="name builtin">object</span><span class="punctuation">):</span>
+    <span class="keyword">def</span> <span class="name function">__init__</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">):</span>
+        <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">fig_index</span> <span class="operator">=</span> <span class="name builtin">set</span><span class="punctuation">()</span>
+        <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">last_drawn</span> <span class="operator">=</span> <span class="punctuation">[]</span>
+
+    <span class="keyword">def</span> <span class="name function">__call__</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">,</span> <span class="operator">*</span><span class="name">args</span><span class="punctuation">,</span> <span class="operator">**</span><span class="name">kwargs</span><span class="punctuation">):</span>
+        <span class="keyword namespace">import</span> <span class="name namespace">pylab</span>
+        <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">last_drawn</span> <span class="operator">=</span> <span class="punctuation">[]</span>
+        <span class="name">figs</span> <span class="operator">=</span> <span class="name builtin">list</span><span class="punctuation">(</span><span class="name builtin">map</span><span class="punctuation">(</span><span class="name">pylab</span><span class="operator">.</span><span class="name">figure</span><span class="punctuation">,</span> <span class="name">pylab</span><span class="operator">.</span><span class="name">get_fignums</span><span class="punctuation">()))</span>
+        <span class="name">new_figures</span> <span class="operator">=</span> <span class="punctuation">[</span><span class="name">fig</span> <span class="keyword">for</span> <span class="name">fig</span> <span class="operator word">in</span> <span class="name">figs</span> <span class="keyword">if</span> <span class="name">fig</span> <span class="operator word">not</span> <span class="operator word">in</span> <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">fig_index</span><span class="punctuation">]</span>
+        <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">fig_index</span><span class="operator">.</span><span class="name">update</span><span class="punctuation">(</span><span class="name builtin">set</span><span class="punctuation">(</span><span class="name">figs</span><span class="punctuation">))</span>
+        <span class="comment"># fig = pylab.gcf()</span>
+        <span class="keyword">for</span> <span class="name">fig</span> <span class="operator word">in</span> <span class="name">new_figures</span><span class="punctuation">:</span>
+            <span class="name">file_descriptor</span> <span class="operator">=</span> <span class="name">BytesIO</span><span class="punctuation">()</span>
+            <span class="name">fig</span><span class="operator">.</span><span class="name">savefig</span><span class="punctuation">(</span><span class="name">file_descriptor</span><span class="punctuation">,</span> <span class="name">format</span><span class="operator">=</span><span class="literal string">'png'</span><span class="punctuation">)</span>
+            <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">last_drawn</span><span class="operator">.</span><span class="name">append</span><span class="punctuation">(</span><span class="name">file_descriptor</span><span class="punctuation">)</span>
+
+    <span class="keyword">def</span> <span class="name function">pop</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">):</span>
+        <span class="name">res</span> <span class="operator">=</span> <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">last_drawn</span>
+        <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">last_drawn</span> <span class="operator">=</span> <span class="punctuation">[]</span>
+        <span class="keyword">return</span> <span class="name">res</span>
+
+    <span class="comment"># the output cage: it captures stdout, stderr and pylab figures temporarely</span>
+    <span class="name decorator">&#64;contextmanager</span>
+    <span class="keyword">def</span> <span class="name function">redifine_output</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">,</span> <span class="name">glob</span><span class="punctuation">):</span>
+        <span class="literal string doc">&quot;&quot;&quot;intercept the output to stdout, stderr and the pylab shows
+        &quot;&quot;&quot;</span>
+        <span class="name">old_stdout</span> <span class="operator">=</span> <span class="name">sys</span><span class="operator">.</span><span class="name">stdout</span>
+        <span class="name">my_stdout</span> <span class="operator">=</span> <span class="name">StringIO</span><span class="punctuation">()</span>
+        <span class="name">sys</span><span class="operator">.</span><span class="name">stdout</span> <span class="operator">=</span> <span class="name">my_stdout</span>
+        <span class="name">old_stderr</span> <span class="operator">=</span> <span class="name">sys</span><span class="operator">.</span><span class="name">stderr</span>
+        <span class="name">my_stderr</span> <span class="operator">=</span> <span class="name">StringIO</span><span class="punctuation">()</span>
+        <span class="name">sys</span><span class="operator">.</span><span class="name">stderr</span> <span class="operator">=</span> <span class="name">my_stderr</span>
+
+        <span class="name">pylab_name</span> <span class="operator">=</span> <span class="literal string">&quot;__pylab__literate__&quot;</span>
+        <span class="keyword">exec</span><span class="punctuation">(</span><span class="literal string">&quot;import pylab as {}</span><span class="literal string escape">\n</span><span class="literal string">&quot;</span><span class="operator">.</span><span class="name">format</span><span class="punctuation">(</span><span class="name">pylab_name</span><span class="punctuation">),</span> <span class="name">glob</span><span class="punctuation">)</span>
+        <span class="name">old_pylab_show</span> <span class="operator">=</span> <span class="name">glob</span><span class="punctuation">[</span><span class="name">pylab_name</span><span class="punctuation">]</span><span class="operator">.</span><span class="name">show</span>
+        <span class="name">old_figure_show</span> <span class="operator">=</span> <span class="name">glob</span><span class="punctuation">[</span><span class="name">pylab_name</span><span class="punctuation">]</span><span class="operator">.</span><span class="name">Figure</span><span class="operator">.</span><span class="name">show</span>
+        <span class="name">old_pyplot_show</span> <span class="operator">=</span> <span class="name">glob</span><span class="punctuation">[</span><span class="name">pylab_name</span><span class="punctuation">]</span><span class="operator">.</span><span class="name">matplotlib</span><span class="operator">.</span><span class="name">pyplot</span><span class="operator">.</span><span class="name">show</span>
+
+        <span class="name">replaced</span> <span class="operator">=</span> <span class="punctuation">{}</span>
+        <span class="name">glob</span><span class="punctuation">[</span><span class="name">pylab_name</span><span class="punctuation">]</span><span class="operator">.</span><span class="name">show</span> <span class="operator">=</span> <span class="name builtin pseudo">self</span>
+        <span class="name">glob</span><span class="punctuation">[</span><span class="name">pylab_name</span><span class="punctuation">]</span><span class="operator">.</span><span class="name">Figure</span><span class="operator">.</span><span class="name">show</span> <span class="operator">=</span> <span class="name builtin pseudo">self</span>
+        <span class="name">glob</span><span class="punctuation">[</span><span class="name">pylab_name</span><span class="punctuation">]</span><span class="operator">.</span><span class="name">matplotlib</span><span class="operator">.</span><span class="name">pyplot</span><span class="operator">.</span><span class="name">show</span> <span class="operator">=</span> <span class="name builtin pseudo">self</span>
+        <span class="keyword">try</span><span class="punctuation">:</span>
+            <span class="keyword">yield</span> <span class="name">my_stdout</span><span class="punctuation">,</span> <span class="name">my_stderr</span>
+        <span class="keyword">finally</span><span class="punctuation">:</span>
+            <span class="name">sys</span><span class="operator">.</span><span class="name">stdout</span> <span class="operator">=</span> <span class="name">old_stdout</span>
+            <span class="name">sys</span><span class="operator">.</span><span class="name">stderr</span> <span class="operator">=</span> <span class="name">old_stderr</span>
+            <span class="name">glob</span><span class="punctuation">[</span><span class="name">pylab_name</span><span class="punctuation">]</span><span class="operator">.</span><span class="name">show</span> <span class="operator">=</span> <span class="name">old_pylab_show</span>
+            <span class="name">glob</span><span class="punctuation">[</span><span class="name">pylab_name</span><span class="punctuation">]</span><span class="operator">.</span><span class="name">Figure</span><span class="operator">.</span><span class="name">show</span> <span class="operator">=</span> <span class="name">old_figure_show</span>
+            <span class="name">glob</span><span class="punctuation">[</span><span class="name">pylab_name</span><span class="punctuation">]</span><span class="operator">.</span><span class="name">matplotlib</span><span class="operator">.</span><span class="name">pyplot</span><span class="operator">.</span><span class="name">show</span> <span class="operator">=</span> <span class="name">old_pyplot_show</span>
+            <span class="keyword">for</span> <span class="name">name</span><span class="punctuation">,</span> <span class="name">value</span> <span class="operator word">in</span> <span class="name">replaced</span><span class="operator">.</span><span class="name">items</span><span class="punctuation">():</span>
+                <span class="name">glob</span><span class="punctuation">[</span><span class="name">name</span><span class="punctuation">]</span> <span class="operator">=</span> <span class="name">value</span>
+</pre>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<pre class="code python literal-block">
+<span class="keyword">def</span> <span class="name function">redifine_output</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">,</span> <span class="name">glob</span><span class="punctuation">):</span>
+</pre>
+<p class="last">intercept the output to stdout, stderr and the pylab shows</p>
+</div>
+<pre class="code python literal-block">
+<span class="comment"># %%</span>
+<span class="comment"># DEDENT and INDENT are at the beginning of the line, but maybe after comments</span>
+<span class="keyword">def</span> <span class="name function">_evaluate_indent_variation</span><span class="punctuation">(</span><span class="name">token_seq</span><span class="punctuation">):</span>
+    <span class="literal string doc">&quot;&quot;&quot;evaluate how much the indentation change with this line of code
+    &quot;&quot;&quot;</span>
+    <span class="name">up</span> <span class="operator">=</span> <span class="name builtin">sum</span><span class="punctuation">(</span><span class="name">token</span><span class="operator">.</span><span class="name">type</span> <span class="operator">==</span> <span class="name">tokenize</span><span class="operator">.</span><span class="name">INDENT</span> <span class="keyword">for</span> <span class="name">token</span> <span class="operator word">in</span> <span class="name">token_seq</span><span class="punctuation">)</span>
+    <span class="name">down</span> <span class="operator">=</span> <span class="name builtin">sum</span><span class="punctuation">(</span><span class="name">token</span><span class="operator">.</span><span class="name">type</span> <span class="operator">==</span> <span class="name">tokenize</span><span class="operator">.</span><span class="name">DEDENT</span> <span class="keyword">for</span> <span class="name">token</span> <span class="operator word">in</span> <span class="name">token_seq</span><span class="punctuation">)</span>
+    <span class="keyword">return</span> <span class="name">up</span><span class="operator">-</span><span class="name">down</span>
+</pre>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<pre class="code python literal-block">
+<span class="comment"># %%</span>
+<span class="comment"># DEDENT and INDENT are at the beginning of the line, but maybe after comments</span>
+<span class="keyword">def</span> <span class="name function">_evaluate_indent_variation</span><span class="punctuation">(</span><span class="name">token_seq</span><span class="punctuation">):</span>
+</pre>
+<p class="last">evaluate how much the indentation change with this line of code</p>
+</div>
+<pre class="code python literal-block">
+<span class="name">_IGNORABLE_TOKENS</span> <span class="operator">=</span> <span class="punctuation">[</span><span class="name">tokenize</span><span class="operator">.</span><span class="name">INDENT</span><span class="punctuation">,</span>
+                     <span class="name">tokenize</span><span class="operator">.</span><span class="name">DEDENT</span><span class="punctuation">,</span>
+                     <span class="name">tokenize</span><span class="operator">.</span><span class="name">COMMENT</span><span class="punctuation">,</span>
+                     <span class="name">tokenize</span><span class="operator">.</span><span class="name">NEWLINE</span><span class="punctuation">,</span>
+                     <span class="name">tokenize</span><span class="operator">.</span><span class="name">NL</span><span class="punctuation">,</span>
+                     <span class="name">tokenize</span><span class="operator">.</span><span class="name">ENCODING</span><span class="punctuation">,</span>
+                     <span class="name">tokenize</span><span class="operator">.</span><span class="name">ENDMARKER</span><span class="punctuation">,</span>
+                     <span class="punctuation">]</span>
+</pre>
+<pre class="code python literal-block">
+<span class="comment"># %%</span>
+<span class="keyword">def</span> <span class="name function">_is_continued_block</span><span class="punctuation">(</span><span class="name">token_line</span><span class="punctuation">):</span>
+    <span class="literal string doc">&quot;&quot;&quot;this recognize if the block is an else or similar, that follow
+    another block even if it is on the same line.
+
+    This should be a separate function at a certain point...
+    &quot;&quot;&quot;</span>
+    <span class="keyword">for</span> <span class="name">token</span> <span class="operator word">in</span> <span class="name">token_line</span><span class="punctuation">:</span>
+        <span class="keyword">if</span> <span class="name">token</span><span class="operator">.</span><span class="name">type</span> <span class="operator word">in</span> <span class="name">_IGNORABLE_TOKENS</span><span class="punctuation">:</span>
+            <span class="keyword">continue</span>
+        <span class="keyword">elif</span> <span class="name">token</span><span class="operator">.</span><span class="name">type</span> <span class="operator">==</span> <span class="name">tokenize</span><span class="operator">.</span><span class="name">NAME</span><span class="punctuation">:</span>
+            <span class="name">name</span> <span class="operator">=</span> <span class="name">token</span><span class="operator">.</span><span class="name">string</span>
+            <span class="keyword">if</span> <span class="name">name</span> <span class="operator word">in</span> <span class="punctuation">[</span><span class="literal string">'elif'</span><span class="punctuation">,</span> <span class="literal string">'else'</span><span class="punctuation">,</span> <span class="literal string">'except'</span><span class="punctuation">,</span> <span class="literal string">'finally'</span><span class="punctuation">]:</span>
+                <span class="keyword">return</span> <span class="name builtin pseudo">True</span>
+            <span class="keyword">else</span><span class="punctuation">:</span>
+                <span class="keyword">return</span> <span class="name builtin pseudo">False</span>
+        <span class="keyword">else</span><span class="punctuation">:</span>
+            <span class="keyword">return</span> <span class="name builtin pseudo">False</span>
+    <span class="keyword">return</span> <span class="name builtin pseudo">False</span>
+</pre>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<pre class="code python literal-block">
+<span class="comment"># %%</span>
+<span class="keyword">def</span> <span class="name function">_is_continued_block</span><span class="punctuation">(</span><span class="name">token_line</span><span class="punctuation">):</span>
+</pre>
+<p>this recognize if the block is an else or similar, that follow
+another block even if it is on the same line.</p>
+<p class="last">This should be a separate function at a certain point...</p>
+</div>
+<pre class="code python literal-block">
+<span class="comment"># %%</span>
+<span class="keyword">def</span> <span class="name function">_is_docstring</span><span class="punctuation">(</span><span class="name">token_line</span><span class="punctuation">):</span>
+    <span class="literal string doc">&quot;&quot;&quot;consider a docstring a string isolated from the rest
+    without lines of codes around, but possible with comments.
+    return the content or an empty string if invalid.
+    if the string is empty, it will not consider it as valid
+    &quot;&quot;&quot;</span>
+    <span class="name">is_string</span> <span class="operator">=</span> <span class="name builtin pseudo">True</span>
+    <span class="name">content</span> <span class="operator">=</span> <span class="literal string">&quot;&quot;</span>
+    <span class="keyword">for</span> <span class="name">token</span> <span class="operator word">in</span> <span class="name">token_line</span><span class="punctuation">:</span>
+        <span class="keyword">if</span> <span class="name">token</span><span class="operator">.</span><span class="name">type</span> <span class="operator word">not</span> <span class="operator word">in</span> <span class="name">_IGNORABLE_TOKENS</span> <span class="operator">+</span> <span class="punctuation">[</span><span class="name">tokenize</span><span class="operator">.</span><span class="name">STRING</span><span class="punctuation">]:</span>
+            <span class="name">is_string</span> <span class="operator">=</span> <span class="name builtin pseudo">False</span>
+            <span class="keyword">break</span>
+        <span class="keyword">elif</span> <span class="name">token</span><span class="operator">.</span><span class="name">type</span> <span class="operator">==</span> <span class="name">tokenize</span><span class="operator">.</span><span class="name">STRING</span><span class="punctuation">:</span>
+            <span class="name">content</span> <span class="operator">+=</span> <span class="name builtin">eval</span><span class="punctuation">(</span><span class="name">token</span><span class="operator">.</span><span class="name">string</span><span class="punctuation">)</span>
+    <span class="keyword">return</span> <span class="name">content</span> <span class="keyword">if</span> <span class="name">is_string</span> <span class="keyword">else</span> <span class="literal string">&quot;&quot;</span>
+</pre>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<pre class="code python literal-block">
+<span class="comment"># %%</span>
+<span class="keyword">def</span> <span class="name function">_is_docstring</span><span class="punctuation">(</span><span class="name">token_line</span><span class="punctuation">):</span>
+</pre>
+<p class="last">consider a docstring a string isolated from the rest
+without lines of codes around, but possible with comments.
+return the content or an empty string if invalid.
+if the string is empty, it will not consider it as valid</p>
+</div>
+<pre class="code python literal-block">
+<span class="comment"># %%</span>
+<span class="keyword">def</span> <span class="name function">_is_block_start</span><span class="punctuation">(</span><span class="name">token_line</span><span class="punctuation">):</span>
+    <span class="name">reversed_line</span> <span class="operator">=</span> <span class="name builtin">reversed</span><span class="punctuation">(</span><span class="name">token_line</span><span class="punctuation">)</span>
+    <span class="keyword">for</span> <span class="name">token</span> <span class="operator word">in</span> <span class="name">reversed_line</span><span class="punctuation">:</span>
+        <span class="keyword">if</span> <span class="name">token</span><span class="operator">.</span><span class="name">type</span> <span class="operator word">in</span> <span class="name">_IGNORABLE_TOKENS</span><span class="punctuation">:</span>
+            <span class="keyword">continue</span>
+        <span class="keyword">elif</span> <span class="name">token</span><span class="operator">.</span><span class="name">type</span> <span class="operator">==</span> <span class="name">tokenize</span><span class="operator">.</span><span class="name">OP</span> <span class="operator word">and</span> <span class="name">token</span><span class="operator">.</span><span class="name">string</span> <span class="operator">==</span> <span class="literal string">':'</span><span class="punctuation">:</span>
+            <span class="keyword">return</span> <span class="name builtin pseudo">True</span>
+        <span class="keyword">else</span><span class="punctuation">:</span>
+            <span class="keyword">return</span> <span class="name builtin pseudo">False</span>
+    <span class="keyword">return</span> <span class="name builtin pseudo">False</span>
+</pre>
+<pre class="code python literal-block">
+<span class="comment"># %%</span>
+<span class="keyword">def</span> <span class="name function">_equalize_docstring</span><span class="punctuation">(</span><span class="name">docstring</span><span class="punctuation">):</span>
+    <span class="literal string doc">&quot;&quot;&quot;this functions should take a docstring, that has the line
+    following the first indented, and remove the beginning space common
+    to all the lines, leaving the first one unmodified
+    &quot;&quot;&quot;</span>
+    <span class="name">lines</span> <span class="operator">=</span> <span class="name builtin">list</span><span class="punctuation">(</span><span class="name">docstring</span><span class="operator">.</span><span class="name">splitlines</span><span class="punctuation">())</span>
+    <span class="comment"># if there is a null string or a single line</span>
+    <span class="comment"># no modifications are required</span>
+    <span class="keyword">if</span> <span class="name builtin">len</span><span class="punctuation">(</span><span class="name">lines</span><span class="punctuation">)</span> <span class="operator">&lt;=</span> <span class="literal number integer">1</span><span class="punctuation">:</span>
+        <span class="keyword">return</span> <span class="name">docstring</span>
+    <span class="name">first_line</span> <span class="operator">=</span> <span class="name">lines</span><span class="punctuation">[</span><span class="literal number integer">0</span><span class="punctuation">]</span>
+    <span class="name">lines</span> <span class="operator">=</span> <span class="name">lines</span><span class="punctuation">[</span><span class="literal number integer">1</span><span class="punctuation">:]</span>
+
+    <span class="keyword">def</span> <span class="name function">count_indent</span><span class="punctuation">(</span><span class="name">line</span><span class="punctuation">):</span>
+        <span class="name">is_whitespace</span> <span class="operator">=</span> <span class="keyword">lambda</span> <span class="name">c</span><span class="punctuation">:</span> <span class="name">c</span> <span class="operator word">in</span> <span class="punctuation">[</span><span class="literal string">' '</span><span class="punctuation">,</span> <span class="literal string">'</span><span class="literal string escape">\t</span><span class="literal string">'</span><span class="punctuation">]</span>
+        <span class="keyword">return</span> <span class="name builtin">len</span><span class="punctuation">([</span><span class="name">char</span> <span class="keyword">for</span> <span class="name">char</span> <span class="operator word">in</span> <span class="name">takewhile</span><span class="punctuation">(</span><span class="name">is_whitespace</span><span class="punctuation">,</span> <span class="name">line</span><span class="punctuation">)])</span>
+
+    <span class="name">indents</span> <span class="operator">=</span> <span class="punctuation">[</span><span class="name">count_indent</span><span class="punctuation">(</span><span class="name">line</span><span class="punctuation">)</span> <span class="keyword">for</span> <span class="name">line</span> <span class="operator word">in</span> <span class="name">lines</span> <span class="keyword">if</span> <span class="name">line</span><span class="operator">.</span><span class="name">strip</span><span class="punctuation">()]</span>
+    <span class="name">min_indent</span> <span class="operator">=</span> <span class="name builtin">min</span><span class="punctuation">(</span><span class="name">indents</span><span class="punctuation">)</span> <span class="keyword">if</span> <span class="name">indents</span> <span class="keyword">else</span> <span class="literal number integer">0</span>
+    <span class="name">lines</span> <span class="operator">=</span> <span class="punctuation">[</span><span class="name">line</span><span class="punctuation">[</span><span class="name">min_indent</span><span class="punctuation">:]</span> <span class="keyword">if</span> <span class="name">line</span><span class="operator">.</span><span class="name">strip</span><span class="punctuation">()</span> <span class="keyword">else</span> <span class="name">line</span> <span class="keyword">for</span> <span class="name">line</span> <span class="operator word">in</span> <span class="name">lines</span><span class="punctuation">]</span>
+    <span class="name">lines</span> <span class="operator">=</span> <span class="punctuation">[</span><span class="name">first_line</span><span class="punctuation">]</span> <span class="operator">+</span> <span class="name">lines</span>
+    <span class="name">docstring</span> <span class="operator">=</span> <span class="literal string">&quot;</span><span class="literal string escape">\n</span><span class="literal string">&quot;</span><span class="operator">.</span><span class="name">join</span><span class="punctuation">(</span><span class="name">lines</span><span class="punctuation">)</span>
+    <span class="keyword">return</span> <span class="name">docstring</span>
+</pre>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<pre class="code python literal-block">
+<span class="comment"># %%</span>
+<span class="keyword">def</span> <span class="name function">_equalize_docstring</span><span class="punctuation">(</span><span class="name">docstring</span><span class="punctuation">):</span>
+</pre>
+<p class="last">this functions should take a docstring, that has the line
+following the first indented, and remove the beginning space common
+to all the lines, leaving the first one unmodified</p>
+</div>
+<pre class="code python literal-block">
+<span class="comment"># %%</span>
+<span class="keyword">def</span> <span class="name function">_generate_logical_lines</span><span class="punctuation">(</span><span class="name">readline</span><span class="punctuation">):</span>
+    <span class="literal string doc">&quot;&quot;&quot;takes a readline from a file and generates a sequence of
+    logically complete lines of code.
+
+    it can also take a list of tokens directly.
+
+    &quot;&quot;&quot;</span>
+    <span class="comment"># split the lines in tokens</span>
+    <span class="keyword">if</span> <span class="name builtin">callable</span><span class="punctuation">(</span><span class="name">readline</span><span class="punctuation">):</span>
+        <span class="name">tokens</span> <span class="operator">=</span> <span class="name">tokenize</span><span class="operator">.</span><span class="name">generate_tokens</span><span class="punctuation">(</span><span class="name">readline</span><span class="punctuation">)</span>
+    <span class="keyword">else</span><span class="punctuation">:</span>
+        <span class="name">tokens</span> <span class="operator">=</span> <span class="name">readline</span>
+
+    <span class="comment"># NEWLINE is the interruption of a logical line</span>
+    <span class="comment"># NL is the end of a physical line withuot ending the logical one</span>
+    <span class="name">is_complete_line</span> <span class="operator">=</span> <span class="keyword">lambda</span> <span class="name">token</span><span class="punctuation">:</span> <span class="name">token</span><span class="operator">.</span><span class="name">type</span> <span class="operator">==</span> <span class="name">tokenize</span><span class="operator">.</span><span class="name">NEWLINE</span>
+    <span class="name">res</span> <span class="operator">=</span> <span class="name builtin">list</span><span class="punctuation">(</span><span class="name builtin">list</span><span class="punctuation">(</span><span class="name">l</span><span class="punctuation">[</span><span class="literal number integer">1</span><span class="punctuation">])</span> <span class="keyword">for</span> <span class="name">l</span> <span class="operator word">in</span> <span class="name">groupby</span><span class="punctuation">(</span><span class="name">tokens</span><span class="punctuation">,</span> <span class="name">is_complete_line</span><span class="punctuation">))</span>
+    <span class="comment"># these are the logical lines, ending with an NL</span>
+    <span class="name">lines</span> <span class="operator">=</span> <span class="punctuation">[</span><span class="name">i0</span><span class="operator">+</span><span class="name">i1</span> <span class="keyword">for</span> <span class="name">i0</span><span class="punctuation">,</span> <span class="name">i1</span> <span class="operator word">in</span> <span class="name builtin">zip</span><span class="punctuation">(</span><span class="name">res</span><span class="punctuation">[::</span><span class="literal number integer">2</span><span class="punctuation">],</span> <span class="name">res</span><span class="punctuation">[</span><span class="literal number integer">1</span><span class="punctuation">::</span><span class="literal number integer">2</span><span class="punctuation">])]</span>
+    <span class="keyword">return</span> <span class="name">lines</span>
+</pre>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<pre class="code python literal-block">
+<span class="comment"># %%</span>
+<span class="keyword">def</span> <span class="name function">_generate_logical_lines</span><span class="punctuation">(</span><span class="name">readline</span><span class="punctuation">):</span>
+</pre>
+<p>takes a readline from a file and generates a sequence of
+logically complete lines of code.</p>
+<p class="last">it can also take a list of tokens directly.</p>
+</div>
+<pre class="code python literal-block">
+<span class="comment"># %%</span>
+<span class="keyword">class</span> <span class="name class">CodeGroup</span><span class="punctuation">(</span><span class="name builtin">object</span><span class="punctuation">):</span>
+    <span class="literal string doc">&quot;&quot;&quot;this is the main class, responsible for holding the code
+    and executing it
+    &quot;&quot;&quot;</span>
+
+    <span class="keyword">def</span> <span class="name function">__init__</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">,</span> <span class="name">block_lines</span><span class="punctuation">,</span> <span class="name">previous_block</span><span class="operator">=</span><span class="name builtin pseudo">None</span><span class="punctuation">):</span>
+        <span class="literal string doc">&quot;&quot;&quot;the input should be a list of lists of tokens
+
+        each list is a logical line&quot;&quot;&quot;</span>
+        <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">tokens</span> <span class="operator">=</span> <span class="name">block_lines</span>
+        <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">previous</span> <span class="operator">=</span> <span class="name">previous_block</span>
+        <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">following</span> <span class="operator">=</span> <span class="name builtin pseudo">None</span>
+        <span class="keyword">if</span> <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">previous</span> <span class="operator word">is</span> <span class="operator word">not</span> <span class="name builtin pseudo">None</span><span class="punctuation">:</span>
+            <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">previous</span><span class="operator">.</span><span class="name">following</span> <span class="operator">=</span> <span class="name builtin pseudo">self</span>
+        <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">results</span> <span class="operator">=</span> <span class="punctuation">{}</span>
+        <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">globals</span> <span class="operator">=</span> <span class="name builtin pseudo">None</span>
+
+    <span class="keyword">def</span> <span class="name function">get_index</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">):</span>
+        <span class="keyword">if</span> <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">previous</span> <span class="operator word">is</span> <span class="name builtin pseudo">None</span><span class="punctuation">:</span>
+            <span class="keyword">return</span> <span class="literal number integer">0</span>
+        <span class="keyword">else</span><span class="punctuation">:</span>
+            <span class="keyword">return</span> <span class="literal number integer">1</span><span class="operator">+</span><span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">previous</span><span class="operator">.</span><span class="name">get_index</span><span class="punctuation">()</span>
+
+    <span class="name decorator">&#64;property</span>
+    <span class="keyword">def</span> <span class="name function">lines</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">):</span>
+        <span class="keyword">return</span> <span class="name">_generate_logical_lines</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">tokens</span><span class="punctuation">)</span>
+
+    <span class="keyword">def</span> <span class="name function">extract_docstrings</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">):</span>
+        <span class="name">doc_lines</span> <span class="operator">=</span> <span class="punctuation">[</span><span class="name builtin">bool</span><span class="punctuation">(</span><span class="name">_is_docstring</span><span class="punctuation">(</span><span class="name">line</span><span class="punctuation">))</span> <span class="keyword">for</span> <span class="name">line</span> <span class="operator word">in</span> <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">lines</span><span class="punctuation">]</span>
+        <span class="name">indexes</span> <span class="operator">=</span> <span class="name builtin">range</span><span class="punctuation">(</span><span class="name builtin">len</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">lines</span><span class="punctuation">))</span>
+        <span class="name">docstrings</span> <span class="operator">=</span> <span class="punctuation">[]</span>
+        <span class="keyword">for</span> <span class="name">idx</span><span class="punctuation">,</span> <span class="name">is_doc</span><span class="punctuation">,</span> <span class="name">line</span> <span class="operator word">in</span> <span class="name builtin">zip</span><span class="punctuation">(</span><span class="name">indexes</span><span class="punctuation">,</span> <span class="name">doc_lines</span><span class="punctuation">,</span> <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">lines</span><span class="punctuation">):</span>
+            <span class="keyword">if</span> <span class="name">is_doc</span> <span class="operator word">and</span> <span class="name">idx</span> <span class="operator">&gt;</span> <span class="literal number integer">0</span> <span class="operator word">and</span> <span class="operator word">not</span> <span class="name">doc_lines</span><span class="punctuation">[</span><span class="name">idx</span><span class="operator">-</span><span class="literal number integer">1</span><span class="punctuation">]:</span>
+                <span class="name">prev_line</span> <span class="operator">=</span> <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">lines</span><span class="punctuation">[</span><span class="name">idx</span><span class="operator">-</span><span class="literal number integer">1</span><span class="punctuation">]</span>
+                <span class="keyword">if</span> <span class="operator word">not</span> <span class="name">_is_block_start</span><span class="punctuation">(</span><span class="name">prev_line</span><span class="punctuation">):</span>
+                    <span class="keyword">continue</span>
+                <span class="name">line_str_pre</span> <span class="operator">=</span> <span class="name builtin">str</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">__class__</span><span class="punctuation">(</span><span class="name">prev_line</span><span class="punctuation">))</span>
+                <span class="name">line_str</span> <span class="operator">=</span> <span class="name builtin">eval</span><span class="punctuation">(</span><span class="name builtin">str</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">__class__</span><span class="punctuation">(</span><span class="name">line</span><span class="punctuation">)))</span>
+                <span class="name">docstring_text</span> <span class="operator">=</span> <span class="literal string">&quot;.. note::</span><span class="literal string escape">\n\n\t</span><span class="literal string">.. code:: python</span><span class="literal string escape">\n\n</span><span class="literal string">&quot;</span>
+
+                <span class="name">splitlines</span> <span class="operator">=</span> <span class="name">line_str_pre</span><span class="operator">.</span><span class="name">splitlines</span><span class="punctuation">()</span>
+                <span class="name">splitlines</span> <span class="operator">=</span> <span class="punctuation">(</span><span class="name">line</span> <span class="keyword">for</span> <span class="name">line</span> <span class="operator word">in</span> <span class="name">splitlines</span> <span class="keyword">if</span> <span class="name">line</span><span class="operator">.</span><span class="name">strip</span><span class="punctuation">())</span>
+                <span class="name">s</span> <span class="operator">=</span> <span class="literal string">&quot;</span><span class="literal string escape">\n</span><span class="literal string">&quot;</span><span class="operator">.</span><span class="name">join</span><span class="punctuation">(</span><span class="literal string">'</span><span class="literal string escape">\t\t</span><span class="literal string">'</span><span class="operator">+</span><span class="name">line</span> <span class="keyword">for</span> <span class="name">line</span> <span class="operator word">in</span> <span class="name">splitlines</span><span class="punctuation">)</span>
+                <span class="name">docstring_text</span> <span class="operator">+=</span> <span class="name">s</span> <span class="operator">+</span> <span class="literal string">'</span><span class="literal string escape">\n\n</span><span class="literal string">'</span>
+
+                <span class="name">line_str</span> <span class="operator">=</span> <span class="name">_equalize_docstring</span><span class="punctuation">(</span><span class="name">line_str</span><span class="punctuation">)</span>
+                <span class="name">splitlines</span> <span class="operator">=</span> <span class="name">line_str</span><span class="operator">.</span><span class="name">splitlines</span><span class="punctuation">()</span>
+                <span class="name">s</span> <span class="operator">=</span> <span class="literal string">&quot;</span><span class="literal string escape">\n</span><span class="literal string">&quot;</span><span class="operator">.</span><span class="name">join</span><span class="punctuation">(</span><span class="literal string">'</span><span class="literal string escape">\t</span><span class="literal string">'</span><span class="operator">+</span><span class="name">int_line</span> <span class="keyword">for</span> <span class="name">int_line</span> <span class="operator word">in</span> <span class="name">splitlines</span><span class="punctuation">)</span>
+                <span class="name">docstring_text</span> <span class="operator">+=</span> <span class="name">s</span> <span class="operator">+</span> <span class="literal string">'</span><span class="literal string escape">\n\n</span><span class="literal string">'</span>
+
+                <span class="name">docstrings</span><span class="operator">.</span><span class="name">append</span><span class="punctuation">(</span><span class="name">docstring_text</span><span class="operator">.</span><span class="name">replace</span><span class="punctuation">(</span><span class="literal string">'</span><span class="literal string escape">\t</span><span class="literal string">'</span><span class="punctuation">,</span> <span class="literal string">'    '</span><span class="punctuation">))</span>
+        <span class="keyword">return</span> <span class="name">docstrings</span>
+
+    <span class="keyword">def</span> <span class="name function">__str__</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">):</span>
+        <span class="name">is_whiteline</span> <span class="operator">=</span> <span class="keyword">lambda</span> <span class="name">s</span><span class="punctuation">:</span> <span class="name">s</span> <span class="operator">==</span> <span class="literal string">'</span><span class="literal string escape">\\</span><span class="literal string">'</span>
+        <span class="name">groups_lines</span> <span class="operator">=</span> <span class="name">tokenize</span><span class="operator">.</span><span class="name">untokenize</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">tokens</span><span class="punctuation">)</span>
+        <span class="comment"># remove the superfluous lines at the beginning due</span>
+        <span class="comment"># to how untokenize work join them together again</span>
+        <span class="name">groups_lines</span> <span class="operator">=</span> <span class="name">dropwhile</span><span class="punctuation">(</span><span class="name">is_whiteline</span><span class="punctuation">,</span> <span class="name">groups_lines</span><span class="operator">.</span><span class="name">split</span><span class="punctuation">(</span><span class="literal string">'</span><span class="literal string escape">\n</span><span class="literal string">'</span><span class="punctuation">))</span>
+        <span class="name">groups_lines</span> <span class="operator">=</span> <span class="name builtin">list</span><span class="punctuation">(</span><span class="name">groups_lines</span><span class="punctuation">)</span>
+        <span class="comment"># this final bit is required to assure that the combination</span>
+        <span class="comment"># of the various groups reconstruct the original source code</span>
+        <span class="keyword">if</span> <span class="name">groups_lines</span><span class="punctuation">[</span><span class="literal number integer">0</span><span class="punctuation">]</span> <span class="operator">==</span> <span class="literal string">'</span><span class="literal string escape">\n</span><span class="literal string">'</span><span class="punctuation">:</span>
+            <span class="name">groups_lines</span> <span class="operator">=</span> <span class="name">groups_lines</span><span class="punctuation">[</span><span class="literal number integer">1</span><span class="punctuation">:]</span>
+        <span class="keyword">return</span> <span class="literal string">&quot;</span><span class="literal string escape">\n</span><span class="literal string">&quot;</span><span class="operator">.</span><span class="name">join</span><span class="punctuation">(</span><span class="name">groups_lines</span><span class="punctuation">)</span>
+
+    <span class="keyword">def</span> <span class="name function">execute</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">,</span> <span class="name">global_dict</span><span class="punctuation">,</span> <span class="name">pylab_show_cage</span><span class="punctuation">):</span>
+        <span class="literal string doc">&quot;&quot;&quot;execute the block in the given gloabal dict under the given cage
+        &quot;&quot;&quot;</span>
+        <span class="keyword">assert</span> <span class="name builtin">type</span><span class="punctuation">(</span><span class="name">global_dict</span><span class="punctuation">)</span> <span class="operator">==</span> <span class="name builtin">dict</span><span class="punctuation">,</span> <span class="literal string">&quot;the globals should be a base dict!&quot;</span>
+        <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">globals</span> <span class="operator">=</span> <span class="name">global_dict</span>
+        <span class="name">myshow</span> <span class="operator">=</span> <span class="name">pylab_show_cage</span>
+        <span class="name">do_interrupt</span> <span class="operator">=</span> <span class="name builtin pseudo">False</span>
+        <span class="comment"># this is necessary to allow me to keep writing even in the output cage</span>
+        <span class="keyword">with</span> <span class="name">myshow</span><span class="operator">.</span><span class="name">redifine_output</span><span class="punctuation">(</span><span class="name">global_dict</span><span class="punctuation">)</span> <span class="keyword">as</span> <span class="name">out_err</span><span class="punctuation">:</span>
+            <span class="comment"># try to capture possible exceptions generated by the code</span>
+            <span class="comment"># to save them. This could lead to capture external exceptions</span>
+            <span class="comment"># and save them as results, but I can't see any way out of this</span>
+            <span class="name">exceptions</span> <span class="operator">=</span> <span class="name builtin pseudo">None</span>
+            <span class="keyword">try</span><span class="punctuation">:</span>
+                <span class="keyword">exec</span><span class="punctuation">(</span><span class="name builtin">str</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">),</span> <span class="name">global_dict</span><span class="punctuation">)</span>
+            <span class="keyword">except</span> <span class="punctuation">(</span><span class="name exception">KeyboardInterrupt</span><span class="punctuation">,</span> <span class="name exception">SystemExit</span><span class="punctuation">):</span>
+                <span class="name">do_interrupt</span> <span class="operator">=</span> <span class="name builtin pseudo">True</span>
+            <span class="keyword">except</span> <span class="name exception">Exception</span> <span class="keyword">as</span> <span class="name">e</span><span class="punctuation">:</span>
+                <span class="name">s</span> <span class="operator">=</span> <span class="punctuation">(</span><span class="literal string">&quot;On block number {}, with sourcecode:</span><span class="literal string escape">\n</span><span class="literal string">'''</span><span class="literal string escape">\n</span><span class="literal string">{}'''</span><span class="literal string escape">\n</span><span class="literal string">&quot;</span> <span class="operator">+</span>
+                     <span class="literal string">&quot; the following exception has been raised:</span><span class="literal string escape">\n</span><span class="literal string">&quot;</span><span class="punctuation">)</span>
+                <span class="name">s</span> <span class="operator">=</span> <span class="name">s</span><span class="operator">.</span><span class="name">format</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">get_index</span><span class="punctuation">(),</span> <span class="name builtin">str</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">))</span>
+                <span class="keyword">raise</span> <span class="name builtin">type</span><span class="punctuation">(</span><span class="name">e</span><span class="punctuation">)(</span><span class="name">s</span> <span class="operator">+</span> <span class="name builtin">repr</span><span class="punctuation">(</span><span class="name">e</span><span class="punctuation">))</span><span class="operator">.</span><span class="name">with_traceback</span><span class="punctuation">(</span><span class="name">sys</span><span class="operator">.</span><span class="name">exc_info</span><span class="punctuation">()[</span><span class="literal number integer">2</span><span class="punctuation">])</span>
+            <span class="comment"># take the output results out of the output cage</span>
+            <span class="name">out</span> <span class="operator">=</span> <span class="name">out_err</span><span class="punctuation">[</span><span class="literal number integer">0</span><span class="punctuation">]</span><span class="operator">.</span><span class="name">getvalue</span><span class="punctuation">()</span>
+            <span class="name">err</span> <span class="operator">=</span> <span class="name">out_err</span><span class="punctuation">[</span><span class="literal number integer">1</span><span class="punctuation">]</span><span class="operator">.</span><span class="name">getvalue</span><span class="punctuation">()</span>
+
+            <span class="name">figures</span> <span class="operator">=</span> <span class="name">myshow</span><span class="operator">.</span><span class="name">pop</span><span class="punctuation">()</span>
+
+            <span class="comment"># output to normal lines the global keys, just a debug thing</span>
+            <span class="comment"># create the result block with the code and all the results</span>
+            <span class="comment"># and append it to the total array of results</span>
+            <span class="comment"># each block execution results should be saved in here.</span>
+            <span class="comment"># it contains the code text, the output, the figures filenames</span>
+            <span class="comment"># and possible errors</span>
+            <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">results</span> <span class="operator">=</span> <span class="punctuation">{</span><span class="literal string">'standard output'</span><span class="punctuation">:</span> <span class="name">out</span><span class="punctuation">,</span>
+                            <span class="literal string">&quot;standard error&quot;</span><span class="punctuation">:</span> <span class="name">err</span><span class="punctuation">,</span>
+                            <span class="literal string">&quot;generated figures&quot;</span><span class="punctuation">:</span> <span class="name">figures</span><span class="punctuation">,</span>
+                            <span class="literal string">&quot;exceptions generated&quot;</span><span class="punctuation">:</span> <span class="name">exceptions</span><span class="punctuation">,</span>
+                            <span class="literal string">&quot;interrupted&quot;</span><span class="punctuation">:</span> <span class="name">do_interrupt</span><span class="punctuation">,</span>
+                            <span class="punctuation">}</span>
+        <span class="keyword">return</span> <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">results</span>
+
+    <span class="keyword">def</span> <span class="name function">has_results</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">):</span>
+        <span class="keyword">if</span> <span class="operator word">not</span> <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">results</span><span class="punctuation">:</span>
+            <span class="keyword">return</span> <span class="name builtin pseudo">False</span>
+        <span class="keyword">for</span> <span class="name">key</span><span class="punctuation">,</span> <span class="name">value</span> <span class="operator word">in</span> <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">results</span><span class="operator">.</span><span class="name">items</span><span class="punctuation">():</span>
+            <span class="keyword">if</span> <span class="name">value</span><span class="punctuation">:</span>
+                <span class="keyword">return</span> <span class="name builtin pseudo">True</span>
+        <span class="keyword">return</span> <span class="name builtin pseudo">False</span>
+
+    <span class="keyword">def</span> <span class="name function">is_docstring</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">):</span>
+        <span class="literal string doc">&quot;&quot;&quot;consider a docstring a string isolated from the rest
+        without lines of codes around, but possible with comments.
+        return the content or an empty string if invalid.
+        if the string is empty, it will not consider it as valid
+        &quot;&quot;&quot;</span>
+        <span class="keyword">return</span> <span class="name">_is_docstring</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">tokens</span><span class="punctuation">)</span>
+
+    <span class="keyword">def</span> <span class="name function">compile</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">,</span> <span class="name">output_dir</span><span class="punctuation">):</span>
+        <span class="literal string doc">&quot;&quot;&quot;compile the executed code into rst
+        &quot;&quot;&quot;</span>
+        <span class="name">content</span> <span class="operator">=</span> <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">is_docstring</span><span class="punctuation">()</span>
+        <span class="keyword">if</span> <span class="name">content</span><span class="punctuation">:</span>
+            <span class="keyword">return</span> <span class="name">content</span> <span class="operator">+</span> <span class="literal string">'</span><span class="literal string escape">\n</span><span class="literal string">'</span>
+
+        <span class="name">compiled_rst</span> <span class="operator">=</span> <span class="literal string">&quot;.. code:: python</span><span class="literal string escape">\n\n</span><span class="literal string">&quot;</span>
+        <span class="name">indented_lines</span> <span class="operator">=</span> <span class="punctuation">[</span><span class="literal string">&quot;    &quot;</span><span class="operator">+</span><span class="name">line</span> <span class="keyword">for</span> <span class="name">line</span> <span class="operator word">in</span> <span class="name builtin">str</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">)</span><span class="operator">.</span><span class="name">split</span><span class="punctuation">(</span><span class="literal string">'</span><span class="literal string escape">\n</span><span class="literal string">'</span><span class="punctuation">)]</span>
+        <span class="name">compiled_rst</span> <span class="operator">+=</span> <span class="literal string">&quot;</span><span class="literal string escape">\n</span><span class="literal string">&quot;</span><span class="operator">.</span><span class="name">join</span><span class="punctuation">(</span><span class="name">indented_lines</span><span class="punctuation">)</span>
+
+        <span class="keyword">for</span> <span class="name">docstring_group</span> <span class="operator word">in</span> <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">extract_docstrings</span><span class="punctuation">():</span>
+            <span class="name">compiled_rst</span> <span class="operator">+=</span> <span class="literal string">'</span><span class="literal string escape">\n</span><span class="literal string">'</span> <span class="operator">+</span> <span class="name">docstring_group</span> <span class="operator">+</span> <span class="literal string">'</span><span class="literal string escape">\n</span><span class="literal string">'</span>
+
+        <span class="keyword">if</span> <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">results</span><span class="punctuation">:</span>  <span class="comment"># self.has_results():</span>
+            <span class="name">compiled_rst</span> <span class="operator">+=</span> <span class="literal string">'</span><span class="literal string escape">\n\n</span><span class="literal string">'</span>
+
+        <span class="keyword">if</span> <span class="literal string">&quot;standard error&quot;</span> <span class="operator word">in</span> <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">results</span><span class="punctuation">:</span>
+            <span class="keyword">if</span> <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">results</span><span class="punctuation">[</span><span class="literal string">&quot;standard error&quot;</span><span class="punctuation">]:</span>
+                <span class="name">compiled_rst</span> <span class="operator">+=</span> <span class="literal string">&quot;.. warning::</span><span class="literal string escape">\n\n</span><span class="literal string">    ::</span><span class="literal string escape">\n\n</span><span class="literal string">&quot;</span>
+                <span class="keyword">for</span> <span class="name">line</span> <span class="operator word">in</span> <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">results</span><span class="punctuation">[</span><span class="literal string">&quot;standard error&quot;</span><span class="punctuation">]</span><span class="operator">.</span><span class="name">split</span><span class="punctuation">(</span><span class="literal string">'</span><span class="literal string escape">\n</span><span class="literal string">'</span><span class="punctuation">):</span>
+                    <span class="name">compiled_rst</span> <span class="operator">+=</span> <span class="literal number integer">2</span><span class="operator">*</span><span class="literal string">&quot;    &quot;</span><span class="operator">+</span><span class="name">line</span><span class="operator">+</span><span class="literal string">'</span><span class="literal string escape">\n</span><span class="literal string">'</span>
+        <span class="keyword">if</span> <span class="literal string">&quot;exceptions generated&quot;</span> <span class="operator word">in</span> <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">results</span><span class="punctuation">:</span>
+            <span class="keyword">if</span> <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">results</span><span class="punctuation">[</span><span class="literal string">&quot;exceptions generated&quot;</span><span class="punctuation">]:</span>
+                <span class="name">compiled_rst</span> <span class="operator">+=</span> <span class="literal string">&quot;.. warning:: Exception Raised</span><span class="literal string escape">\n\n</span><span class="literal string">    ::</span><span class="literal string escape">\n\n</span><span class="literal string">&quot;</span>
+                <span class="name">generated</span> <span class="operator">=</span> <span class="name builtin">str</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">results</span><span class="punctuation">[</span><span class="literal string">&quot;exceptions generated&quot;</span><span class="punctuation">])</span>
+                <span class="keyword">for</span> <span class="name">line</span> <span class="operator word">in</span> <span class="name">generated</span><span class="operator">.</span><span class="name">split</span><span class="punctuation">(</span><span class="literal string">'</span><span class="literal string escape">\n</span><span class="literal string">'</span><span class="punctuation">):</span>
+                    <span class="name">compiled_rst</span> <span class="operator">+=</span> <span class="literal number integer">2</span><span class="operator">*</span><span class="literal string">&quot;    &quot;</span><span class="operator">+</span><span class="name">line</span><span class="operator">+</span><span class="literal string">'</span><span class="literal string escape">\n</span><span class="literal string">'</span>
+        <span class="keyword">if</span> <span class="literal string">&quot;standard output&quot;</span> <span class="operator word">in</span> <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">results</span><span class="punctuation">:</span>
+            <span class="keyword">if</span> <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">results</span><span class="punctuation">[</span><span class="literal string">&quot;standard output&quot;</span><span class="punctuation">]:</span>
+                <span class="name">compiled_rst</span> <span class="operator">+=</span> <span class="literal string">&quot;::</span><span class="literal string escape">\n\n</span><span class="literal string">&quot;</span>
+                <span class="keyword">for</span> <span class="name">line</span> <span class="operator word">in</span> <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">results</span><span class="punctuation">[</span><span class="literal string">&quot;standard output&quot;</span><span class="punctuation">]</span><span class="operator">.</span><span class="name">split</span><span class="punctuation">(</span><span class="literal string">'</span><span class="literal string escape">\n</span><span class="literal string">'</span><span class="punctuation">):</span>
+                    <span class="name">compiled_rst</span> <span class="operator">+=</span> <span class="literal string">&quot;    &quot;</span><span class="operator">+</span><span class="name">line</span><span class="operator">+</span><span class="literal string">'</span><span class="literal string escape">\n</span><span class="literal string">'</span>
+        <span class="keyword">if</span> <span class="literal string">&quot;generated figures&quot;</span> <span class="operator word">in</span> <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">results</span><span class="punctuation">:</span>
+            <span class="name">figures</span> <span class="operator">=</span> <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">results</span><span class="punctuation">[</span><span class="literal string">&quot;generated figures&quot;</span><span class="punctuation">]</span>
+            <span class="keyword">for</span> <span class="name">fig_idx</span><span class="punctuation">,</span> <span class="name">figure_bytes</span> <span class="operator word">in</span> <span class="name builtin">enumerate</span><span class="punctuation">(</span><span class="name">figures</span><span class="punctuation">):</span>
+                <span class="name">index</span> <span class="operator">=</span> <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">get_index</span><span class="punctuation">()</span>
+                <span class="name">f_name</span> <span class="operator">=</span> <span class="literal string">&quot;figure_{}_{}.png&quot;</span><span class="operator">.</span><span class="name">format</span><span class="punctuation">(</span><span class="name">index</span><span class="punctuation">,</span> <span class="name">fig_idx</span><span class="punctuation">)</span>
+                <span class="name">f_dir</span> <span class="operator">=</span> <span class="name">os</span><span class="operator">.</span><span class="name">path</span><span class="operator">.</span><span class="name">join</span><span class="punctuation">(</span><span class="name">output_dir</span><span class="punctuation">,</span> <span class="name">f_name</span><span class="punctuation">)</span>
+                <span class="keyword">with</span> <span class="name builtin">open</span><span class="punctuation">(</span><span class="name">f_dir</span><span class="punctuation">,</span> <span class="literal string">'wb'</span><span class="punctuation">)</span> <span class="keyword">as</span> <span class="name builtin">file</span><span class="punctuation">:</span>
+                    <span class="name builtin">file</span><span class="operator">.</span><span class="name">write</span><span class="punctuation">(</span><span class="name">figure_bytes</span><span class="operator">.</span><span class="name">getvalue</span><span class="punctuation">())</span>
+                <span class="name">f_link</span> <span class="operator">=</span> <span class="name">os</span><span class="operator">.</span><span class="name">path</span><span class="operator">.</span><span class="name">join</span><span class="punctuation">(</span><span class="name">os</span><span class="operator">.</span><span class="name">path</span><span class="operator">.</span><span class="name">curdir</span><span class="punctuation">,</span> <span class="name">f_name</span><span class="punctuation">)</span>
+                <span class="name">compiled_rst</span> <span class="operator">+=</span> <span class="literal string">&quot;.. image:: &quot;</span><span class="operator">+</span><span class="name builtin">str</span><span class="punctuation">(</span><span class="name">f_link</span><span class="punctuation">)</span><span class="operator">+</span><span class="literal string">&quot;</span><span class="literal string escape">\n\n</span><span class="literal string">&quot;</span>
+        <span class="keyword">return</span> <span class="name">compiled_rst</span>
+
+    <span class="name decorator">&#64;classmethod</span>
+    <span class="keyword">def</span> <span class="name function">iterate_groups_from_source</span><span class="punctuation">(</span><span class="name">cls</span><span class="punctuation">,</span> <span class="name">readline</span><span class="punctuation">):</span>
+        <span class="name">lines</span> <span class="operator">=</span> <span class="name">_generate_logical_lines</span><span class="punctuation">(</span><span class="name">readline</span><span class="punctuation">)</span>
+        <span class="comment"># for each line, determins its level of variation of indentation</span>
+        <span class="name">var_indent_lev</span> <span class="operator">=</span> <span class="name builtin">map</span><span class="punctuation">(</span><span class="name">_evaluate_indent_variation</span><span class="punctuation">,</span> <span class="name">lines</span><span class="punctuation">)</span>
+        <span class="comment"># accumulate to obtain the total one</span>
+        <span class="name">indent_levels</span> <span class="operator">=</span> <span class="name">accumulate</span><span class="punctuation">(</span><span class="name">var_indent_lev</span><span class="punctuation">)</span>
+        <span class="comment"># this checks is the line starts with a decorator</span>
+        <span class="name">is_decorator</span> <span class="operator">=</span> <span class="keyword">lambda</span> <span class="name">lg</span><span class="punctuation">:</span> <span class="name">lg</span><span class="punctuation">[</span><span class="operator">-</span><span class="literal number integer">1</span><span class="punctuation">]</span><span class="operator">.</span><span class="name">line</span><span class="operator">.</span><span class="name">strip</span><span class="punctuation">()</span><span class="operator">.</span><span class="name">startswith</span><span class="punctuation">(</span><span class="literal string">'&#64;'</span><span class="punctuation">)</span>
+        <span class="name">last_group</span> <span class="operator">=</span> <span class="punctuation">[]</span>
+        <span class="name">last_created_group</span> <span class="operator">=</span> <span class="name builtin pseudo">None</span>
+        <span class="keyword">for</span> <span class="name">line</span><span class="punctuation">,</span> <span class="name">indent_level</span> <span class="operator word">in</span> <span class="name builtin">zip</span><span class="punctuation">(</span><span class="name">lines</span><span class="punctuation">,</span> <span class="name">indent_levels</span><span class="punctuation">):</span>
+            <span class="comment"># if is a flat line, either start or if it is a decorator</span>
+            <span class="comment"># store it for later</span>
+            <span class="keyword">if</span> <span class="name">indent_level</span> <span class="operator">==</span> <span class="literal number integer">0</span><span class="punctuation">:</span>
+                <span class="comment"># have to check for decorators</span>
+                <span class="keyword">if</span> <span class="punctuation">(</span><span class="operator word">not</span> <span class="name">last_group</span><span class="punctuation">)</span> <span class="operator word">or</span> <span class="name">is_decorator</span><span class="punctuation">(</span><span class="name">last_group</span><span class="punctuation">):</span>
+                    <span class="name">last_group</span><span class="operator">.</span><span class="name">extend</span><span class="punctuation">(</span><span class="name">line</span><span class="punctuation">)</span>
+                <span class="comment"># now I check if the block is the continuation</span>
+                <span class="comment"># of a previous one</span>
+                <span class="keyword">elif</span> <span class="name">_is_continued_block</span><span class="punctuation">(</span><span class="name">line</span><span class="punctuation">):</span>
+                    <span class="name">last_group</span><span class="operator">.</span><span class="name">extend</span><span class="punctuation">(</span><span class="name">line</span><span class="punctuation">)</span>
+                <span class="keyword">else</span><span class="punctuation">:</span>
+                    <span class="name">new_group</span> <span class="operator">=</span> <span class="name">cls</span><span class="punctuation">(</span><span class="name">last_group</span><span class="punctuation">,</span> <span class="name">last_created_group</span><span class="punctuation">)</span>
+                    <span class="name">last_created_group</span> <span class="operator">=</span> <span class="name">new_group</span>
+                    <span class="keyword">yield</span> <span class="name">new_group</span>
+                    <span class="name">last_group</span> <span class="operator">=</span> <span class="name">line</span><span class="operator">.</span><span class="name">copy</span><span class="punctuation">()</span>
+            <span class="comment"># otherwise put it in the current group</span>
+            <span class="keyword">else</span><span class="punctuation">:</span>
+                <span class="name">last_group</span><span class="operator">.</span><span class="name">extend</span><span class="punctuation">(</span><span class="name">line</span><span class="punctuation">)</span>
+        <span class="comment"># if the last group is not closed, put it with the others</span>
+        <span class="keyword">if</span> <span class="name">last_group</span><span class="punctuation">:</span>
+            <span class="name">new_group</span> <span class="operator">=</span> <span class="name">cls</span><span class="punctuation">(</span><span class="name">last_group</span><span class="punctuation">,</span> <span class="name">last_created_group</span><span class="punctuation">)</span>
+            <span class="name">last_created_group</span> <span class="operator">=</span> <span class="name">new_group</span>
+            <span class="keyword">yield</span> <span class="name">new_group</span>
+</pre>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<pre class="code python literal-block">
+<span class="comment"># %%</span>
+<span class="keyword">class</span> <span class="name class">CodeGroup</span><span class="punctuation">(</span><span class="name builtin">object</span><span class="punctuation">):</span>
+</pre>
+<p class="last">this is the main class, responsible for holding the code
+and executing it</p>
+</div>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<pre class="code python literal-block">
+<span class="keyword">def</span> <span class="name function">__init__</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">,</span> <span class="name">block_lines</span><span class="punctuation">,</span> <span class="name">previous_block</span><span class="operator">=</span><span class="name builtin pseudo">None</span><span class="punctuation">):</span>
+</pre>
+<p>the input should be a list of lists of tokens</p>
+<p class="last">each list is a logical line</p>
+</div>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<pre class="code python literal-block">
+<span class="keyword">def</span> <span class="name function">execute</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">,</span> <span class="name">global_dict</span><span class="punctuation">,</span> <span class="name">pylab_show_cage</span><span class="punctuation">):</span>
+</pre>
+<p class="last">execute the block in the given gloabal dict under the given cage</p>
+</div>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<pre class="code python literal-block">
+<span class="keyword">def</span> <span class="name function">is_docstring</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">):</span>
+</pre>
+<p class="last">consider a docstring a string isolated from the rest
+without lines of codes around, but possible with comments.
+return the content or an empty string if invalid.
+if the string is empty, it will not consider it as valid</p>
+</div>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<pre class="code python literal-block">
+<span class="keyword">def</span> <span class="name function">compile</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">,</span> <span class="name">output_dir</span><span class="punctuation">):</span>
+</pre>
+<p class="last">compile the executed code into rst</p>
+</div>
+<pre class="code python literal-block">
+<span class="comment"># %%</span>
+<span class="keyword">def</span> <span class="name function">run_file</span><span class="punctuation">(</span><span class="name">input_file</span><span class="punctuation">,</span> <span class="name">output_dir</span><span class="punctuation">,</span> <span class="name">argv</span><span class="punctuation">):</span>
+    <span class="keyword">with</span> <span class="name builtin">open</span><span class="punctuation">(</span><span class="name">input_file</span><span class="punctuation">)</span> <span class="keyword">as</span> <span class="name builtin">file</span><span class="punctuation">:</span>
+        <span class="name">origins</span> <span class="operator">=</span> <span class="name builtin">file</span><span class="operator">.</span><span class="name">readline</span>
+        <span class="name">groups</span> <span class="operator">=</span> <span class="name">CodeGroup</span><span class="operator">.</span><span class="name">iterate_groups_from_source</span><span class="punctuation">(</span><span class="name">origins</span><span class="punctuation">)</span>
+        <span class="name">groups</span> <span class="operator">=</span> <span class="name builtin">list</span><span class="punctuation">(</span><span class="name">groups</span><span class="punctuation">)</span>
+        <span class="name">glob</span> <span class="operator">=</span> <span class="punctuation">{}</span>
+        <span class="comment"># correctly handles the __main__ execution</span>
+        <span class="keyword">exec</span><span class="punctuation">(</span><span class="literal string">'__name__ = &quot;__main__&quot;'</span><span class="punctuation">,</span> <span class="name">glob</span><span class="punctuation">)</span>
+        <span class="keyword">exec</span><span class="punctuation">(</span><span class="literal string">'import sys'</span><span class="punctuation">,</span> <span class="name">glob</span><span class="punctuation">)</span>
+        <span class="keyword">exec</span><span class="punctuation">(</span><span class="literal string">'sys.argv = {}'</span><span class="operator">.</span><span class="name">format</span><span class="punctuation">(</span><span class="name builtin">repr</span><span class="punctuation">(</span><span class="name">argv</span><span class="punctuation">)),</span> <span class="name">glob</span><span class="punctuation">)</span>
+        <span class="comment"># correctly handles the sys.exit call</span>
+        <span class="keyword">exec</span><span class="punctuation">(</span><span class="literal string">'def __raises(i):</span><span class="literal string escape">\n\t</span><span class="literal string">raise KeyboardInterrupt(str(i))'</span><span class="punctuation">)</span>
+        <span class="keyword">exec</span><span class="punctuation">(</span><span class="literal string">'sys.exit = __raises'</span><span class="punctuation">)</span>
+        <span class="keyword">exec</span><span class="punctuation">(</span><span class="literal string">'del __raises'</span><span class="punctuation">)</span>
+        <span class="comment"># redirect the matplotlib to the written version</span>
+        <span class="keyword">exec</span><span class="punctuation">(</span><span class="literal string">&quot;import matplotlib as __mpl__literate__</span><span class="literal string escape">\n</span><span class="literal string">&quot;</span><span class="punctuation">,</span> <span class="name">glob</span><span class="punctuation">)</span>
+        <span class="keyword">exec</span><span class="punctuation">(</span><span class="literal string">&quot;__mpl__literate__.use('Agg')</span><span class="literal string escape">\n</span><span class="literal string">&quot;</span><span class="punctuation">,</span> <span class="name">glob</span><span class="punctuation">)</span>
+        <span class="keyword">exec</span><span class="punctuation">(</span><span class="literal string">&quot;del __mpl__literate__&quot;</span><span class="punctuation">,</span> <span class="name">glob</span><span class="punctuation">)</span>
+
+        <span class="name">do_execute</span> <span class="operator">=</span> <span class="name builtin pseudo">True</span>
+        <span class="name">pylab_show_cage</span> <span class="operator">=</span> <span class="name">MyPylabShow</span><span class="punctuation">()</span>
+        <span class="keyword">for</span> <span class="name">group</span> <span class="operator word">in</span> <span class="name">groups</span><span class="punctuation">:</span>
+            <span class="comment"># print(str(group))</span>
+            <span class="keyword">if</span> <span class="name">do_execute</span><span class="punctuation">:</span>
+                <span class="name">results</span> <span class="operator">=</span> <span class="name">group</span><span class="operator">.</span><span class="name">execute</span><span class="punctuation">(</span><span class="name">glob</span><span class="punctuation">,</span> <span class="name">pylab_show_cage</span><span class="punctuation">)</span>
+                <span class="name">do_execute</span> <span class="operator">=</span> <span class="operator word">not</span> <span class="name">results</span><span class="punctuation">[</span><span class="literal string">&quot;interrupted&quot;</span><span class="punctuation">]</span>
+            <span class="comment"># print('-------------------------')</span>
+            <span class="comment"># print(group.results)</span>
+            <span class="comment"># print('=========================')</span>
+        <span class="comment"># close all the obtained figures, as the pylab act as a singleton</span>
+        <span class="comment"># and stores them. i you launch any code that use pylab after the</span>
+        <span class="comment"># execution, it will have all the generated figures.</span>
+        <span class="keyword namespace">import</span> <span class="name namespace">pylab</span>
+        <span class="name">pylab</span><span class="operator">.</span><span class="name">close</span><span class="punctuation">(</span><span class="literal string">'all'</span><span class="punctuation">)</span>
+        <span class="name">imported_modules</span> <span class="operator">=</span> <span class="name builtin">set</span><span class="punctuation">()</span>
+        <span class="keyword">for</span> <span class="name">key</span><span class="punctuation">,</span> <span class="name">value</span> <span class="operator word">in</span> <span class="name">glob</span><span class="operator">.</span><span class="name">items</span><span class="punctuation">():</span>
+            <span class="keyword">if</span> <span class="name builtin">type</span><span class="punctuation">(</span><span class="name">value</span><span class="punctuation">)</span> <span class="operator">==</span> <span class="name builtin">type</span><span class="punctuation">(</span><span class="name">pylab</span><span class="punctuation">):</span>
+                <span class="name">imported_modules</span><span class="operator">.</span><span class="name">add</span><span class="punctuation">(</span><span class="name">value</span><span class="punctuation">)</span>
+        <span class="keyword">for</span> <span class="name">module</span> <span class="operator word">in</span> <span class="name">imported_modules</span><span class="punctuation">:</span>
+            <span class="keyword">pass</span>  <span class="comment"># print(module.__name__)</span>
+
+    <span class="keyword">if</span> <span class="operator word">not</span> <span class="name">os</span><span class="operator">.</span><span class="name">path</span><span class="operator">.</span><span class="name">exists</span><span class="punctuation">(</span><span class="name">output_dir</span><span class="punctuation">):</span>
+        <span class="name">os</span><span class="operator">.</span><span class="name">makedirs</span><span class="punctuation">(</span><span class="name">output_dir</span><span class="punctuation">)</span>
+
+    <span class="name">f_base</span> <span class="operator">=</span> <span class="name">os</span><span class="operator">.</span><span class="name">path</span><span class="operator">.</span><span class="name">basename</span><span class="punctuation">(</span><span class="name">input_file</span><span class="punctuation">)</span>
+    <span class="name">f_base</span> <span class="operator">=</span> <span class="name">os</span><span class="operator">.</span><span class="name">path</span><span class="operator">.</span><span class="name">splitext</span><span class="punctuation">(</span><span class="name">f_base</span><span class="punctuation">)[</span><span class="literal number integer">0</span><span class="punctuation">]</span>
+    <span class="name">filename_complete_rst</span> <span class="operator">=</span> <span class="name">os</span><span class="operator">.</span><span class="name">path</span><span class="operator">.</span><span class="name">join</span><span class="punctuation">(</span><span class="name">output_dir</span><span class="punctuation">,</span> <span class="literal string">'{}.rst'</span><span class="operator">.</span><span class="name">format</span><span class="punctuation">(</span><span class="name">f_base</span><span class="punctuation">))</span>
+    <span class="name">compiled_rst</span> <span class="operator">=</span> <span class="literal string">&quot;</span><span class="literal string escape">\n</span><span class="literal string">&quot;</span><span class="operator">.</span><span class="name">join</span><span class="punctuation">(</span><span class="name builtin">str</span><span class="punctuation">(</span><span class="name">group</span><span class="operator">.</span><span class="name">compile</span><span class="punctuation">(</span><span class="name">output_dir</span><span class="punctuation">))</span>
+                             <span class="keyword">for</span> <span class="name">group</span> <span class="operator word">in</span> <span class="name">groups</span><span class="punctuation">)</span>
+    <span class="keyword">with</span> <span class="name builtin">open</span><span class="punctuation">(</span><span class="name">filename_complete_rst</span><span class="punctuation">,</span> <span class="literal string">'wt'</span><span class="punctuation">)</span> <span class="keyword">as</span> <span class="name">rst_file</span><span class="punctuation">:</span>
+        <span class="keyword">print</span><span class="punctuation">(</span><span class="name">compiled_rst</span><span class="punctuation">,</span> <span class="name builtin">file</span><span class="operator">=</span><span class="name">rst_file</span><span class="punctuation">)</span>
+
+    <span class="name">filename_complete_html</span> <span class="operator">=</span> <span class="name">os</span><span class="operator">.</span><span class="name">path</span><span class="operator">.</span><span class="name">join</span><span class="punctuation">(</span><span class="name">output_dir</span><span class="punctuation">,</span> <span class="literal string">'{}.html'</span><span class="operator">.</span><span class="name">format</span><span class="punctuation">(</span><span class="name">f_base</span><span class="punctuation">))</span>
+    <span class="name">H</span> <span class="operator">=</span> <span class="name">publish_parts</span><span class="punctuation">(</span><span class="name">compiled_rst</span><span class="punctuation">,</span> <span class="name">writer_name</span><span class="operator">=</span><span class="literal string">'html'</span><span class="punctuation">)[</span><span class="literal string">'whole'</span><span class="punctuation">]</span>
+    <span class="keyword">with</span> <span class="name builtin">open</span><span class="punctuation">(</span><span class="name">filename_complete_html</span><span class="punctuation">,</span> <span class="literal string">'wt'</span><span class="punctuation">)</span> <span class="keyword">as</span> <span class="name">html_file</span><span class="punctuation">:</span>
+        <span class="keyword">print</span><span class="punctuation">(</span><span class="name">H</span><span class="punctuation">,</span> <span class="name builtin">file</span><span class="operator">=</span><span class="name">html_file</span><span class="punctuation">)</span>
+    <span class="keyword">return</span> <span class="name builtin pseudo">True</span>
+</pre>
+<pre class="code python literal-block">
+<span class="comment"># %%</span>
+<span class="comment"># #############################################################################</span>
+<span class="comment"># TEST SECTION</span>
+<span class="comment"># #############################################################################</span>
+
+<span class="keyword namespace">import</span> <span class="name namespace">unittest</span>
+</pre>
+<pre class="code python literal-block">
+<span class="name">source_test_1</span> <span class="operator">=</span> <span class="literal string">'''
+#not docstring
+a = 5
+
+#comment 2
+&quot;&quot;&quot;docstring&quot;&quot;&quot;
+
+&quot;&quot;&quot;docstring&quot;&quot;&quot;
+
+&quot;not docstring&quot;; a = 5
+'''</span>
+</pre>
+<pre class="code python literal-block">
+<span class="name">source_test_if_else</span> <span class="operator">=</span> <span class="literal string">'''
+if False:
+    pass
+elif 0:
+    pass
+else:
+    pass
+'''</span>
+</pre>
+<pre class="code python literal-block">
+<span class="name">source_test_for_else</span> <span class="operator">=</span> <span class="literal string">'''
+for i in range(1):
+    pass
+else:
+    pass
+'''</span>
+</pre>
+<pre class="code python literal-block">
+<span class="name">source_test_try_except</span> <span class="operator">=</span> <span class="literal string">'''
+try:
+    pass
+except:
+    pass
+else:
+    pass
+finally:
+    pass
+'''</span>
+</pre>
+<pre class="code python literal-block">
+<span class="name">source_grouping_decorator</span> <span class="operator">=</span> <span class="literal string">'''
+#comment
+&#64;contextmanager
+def function():
+    yield 1
+'''</span>
+</pre>
+<pre class="code python literal-block">
+<span class="name">source_docstring_extraction</span> <span class="operator">=</span> <span class="literal string">'''
+def f():
+    &quot;first docstring&quot;
+    for i in range(10):
+        &quot;&quot;&quot;second docstring, multiline,
+        with additional content
+
+        and a line separation
+        &quot;&quot;&quot;
+        print(i)
+        &quot;not a docstring&quot;
+    for i in range(10):
+        &quot;third and last docstring&quot;
+        pass
+'''</span>
+</pre>
+<pre class="code python literal-block">
+<span class="comment"># %%</span>
+<span class="name">source_docstring_extraction_with_comments</span> <span class="operator">=</span> <span class="literal string">'''
+#comment 1
+#comment 2
+def f():
+    &quot;&quot;&quot;docstring
+    second line
+
+    third line
+    &quot;&quot;&quot;
+    pass
+#comment
+'''</span>
+</pre>
+<pre class="code python literal-block">
+<span class="name">expected_docstring_extraction_with_comments</span> <span class="operator">=</span> <span class="literal string">'''.. note::
+
+    .. code:: python
+
+        #comment 1
+        #comment 2
+        def f():
+
+    docstring
+    second line
+
+    third line
+'''</span>
+</pre>
+<pre class="code python literal-block">
+<span class="comment"># %%</span>
+
+<span class="name">expected_title_in_warnings</span> <span class="operator">=</span> <span class="literal string">'''.. code:: python
+
+    print('=================', file=sys.stderr)
+
+
+.. warning::
+
+    ::
+
+        =================
+
+'''</span>
+</pre>
+<pre class="code python literal-block">
+<span class="comment"># %%</span>
+<span class="keyword">def</span> <span class="name function">_normalize_str</span><span class="punctuation">(</span><span class="name">string</span><span class="punctuation">):</span>
+    <span class="literal string doc">&quot;&quot;&quot;removes the trailing white spaces from a multiline string
+    It is necessary to confront the results of the printing without
+    getting crazy for invisible whitespaces
+    &quot;&quot;&quot;</span>
+    <span class="name">string</span> <span class="operator">=</span> <span class="punctuation">[</span><span class="name">line</span><span class="operator">.</span><span class="name">rstrip</span><span class="punctuation">()</span> <span class="keyword">for</span> <span class="name">line</span> <span class="operator word">in</span> <span class="name">string</span><span class="operator">.</span><span class="name">splitlines</span><span class="punctuation">()]</span>
+    <span class="name">string</span> <span class="operator">=</span> <span class="literal string">'</span><span class="literal string escape">\n</span><span class="literal string">'</span><span class="operator">.</span><span class="name">join</span><span class="punctuation">(</span><span class="name">string</span><span class="punctuation">)</span>
+    <span class="keyword">return</span> <span class="name">string</span>
+</pre>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<pre class="code python literal-block">
+<span class="comment"># %%</span>
+<span class="keyword">def</span> <span class="name function">_normalize_str</span><span class="punctuation">(</span><span class="name">string</span><span class="punctuation">):</span>
+</pre>
+<p class="last">removes the trailing white spaces from a multiline string
+It is necessary to confront the results of the printing without
+getting crazy for invisible whitespaces</p>
+</div>
+<pre class="code python literal-block">
+<span class="comment"># %%</span>
+<span class="keyword">class</span> <span class="name class">test_Group</span><span class="punctuation">(</span><span class="name">unittest</span><span class="operator">.</span><span class="name">TestCase</span><span class="punctuation">):</span>
+
+    <span class="keyword">def</span> <span class="name function">generate_groups</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">,</span> <span class="name">source_code</span><span class="punctuation">):</span>
+        <span class="literal string doc">&quot;&quot;&quot;generates the groups from the given source code
+        boilerplate code&quot;&quot;&quot;</span>
+        <span class="name">origin</span> <span class="operator">=</span> <span class="name">StringIO</span><span class="punctuation">(</span><span class="name">source_code</span><span class="punctuation">)</span><span class="operator">.</span><span class="name">readline</span>
+        <span class="name">groups</span> <span class="operator">=</span> <span class="name">CodeGroup</span><span class="operator">.</span><span class="name">iterate_groups_from_source</span><span class="punctuation">(</span><span class="name">origin</span><span class="punctuation">)</span>
+        <span class="keyword">return</span> <span class="name">groups</span>
+
+    <span class="keyword">def</span> <span class="name function">test_is_docstring_1</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">):</span>
+        <span class="literal string doc">&quot;&quot;&quot;On the given source code, check which are proper strings that
+        will be Weaved out.
+        &quot;&quot;&quot;</span>
+        <span class="name">groups</span> <span class="operator">=</span> <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">generate_groups</span><span class="punctuation">(</span><span class="name">source_test_1</span><span class="punctuation">)</span>
+        <span class="name">expected</span> <span class="operator">=</span> <span class="punctuation">[</span><span class="name builtin pseudo">False</span><span class="punctuation">,</span> <span class="name builtin pseudo">True</span><span class="punctuation">,</span> <span class="name builtin pseudo">True</span><span class="punctuation">,</span> <span class="name builtin pseudo">False</span><span class="punctuation">]</span>
+        <span class="name">observed</span> <span class="operator">=</span> <span class="punctuation">[</span><span class="name builtin">bool</span><span class="punctuation">(</span><span class="name">g</span><span class="operator">.</span><span class="name">is_docstring</span><span class="punctuation">())</span> <span class="keyword">for</span> <span class="name">g</span> <span class="operator word">in</span> <span class="name">groups</span><span class="punctuation">]</span>
+        <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">assertEqual</span><span class="punctuation">(</span><span class="name">expected</span><span class="punctuation">,</span> <span class="name">observed</span><span class="punctuation">)</span>
+
+    <span class="keyword">def</span> <span class="name function">test_recomposition_trailing_white_line</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">):</span>
+        <span class="literal string doc">&quot;&quot;&quot;if the source file has no trailing white line the reconstructed
+        source code correspond to the original.
+        No garantee if it is not following the proper format
+
+        If it is missing the last newline, it is going to miss the last
+        group!
+        &quot;&quot;&quot;</span>
+        <span class="name">groups</span> <span class="operator">=</span> <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">generate_groups</span><span class="punctuation">(</span><span class="name">source_test_1</span><span class="punctuation">)</span>
+        <span class="name">generated</span> <span class="operator">=</span> <span class="literal string">&quot;&quot;</span><span class="operator">.</span><span class="name">join</span><span class="punctuation">(</span><span class="name builtin">str</span><span class="punctuation">(</span><span class="name">g</span><span class="punctuation">)</span> <span class="keyword">for</span> <span class="name">g</span> <span class="operator word">in</span> <span class="name">groups</span><span class="punctuation">)</span>
+        <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">assertEqual</span><span class="punctuation">(</span><span class="name">generated</span><span class="punctuation">,</span> <span class="name">source_test_1</span><span class="punctuation">)</span>
+
+    <span class="keyword">def</span> <span class="name function">test_simple_output</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">):</span>
+        <span class="name">code</span> <span class="operator">=</span> <span class="literal string">&quot;print(1)</span><span class="literal string escape">\n</span><span class="literal string">&quot;</span>
+        <span class="name">groups</span> <span class="operator">=</span> <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">generate_groups</span><span class="punctuation">(</span><span class="name">code</span><span class="punctuation">)</span>
+        <span class="name">group0</span> <span class="operator">=</span> <span class="name builtin">list</span><span class="punctuation">(</span><span class="name">groups</span><span class="punctuation">)[</span><span class="literal number integer">0</span><span class="punctuation">]</span>
+        <span class="name">res</span> <span class="operator">=</span> <span class="name">group0</span><span class="operator">.</span><span class="name">execute</span><span class="punctuation">({},</span> <span class="name">MyPylabShow</span><span class="punctuation">())</span>
+        <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">assertEqual</span><span class="punctuation">(</span><span class="name">res</span><span class="punctuation">[</span><span class="literal string">'standard output'</span><span class="punctuation">],</span> <span class="literal string">'1</span><span class="literal string escape">\n</span><span class="literal string">'</span><span class="punctuation">)</span>
+        <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">assertEqual</span><span class="punctuation">(</span><span class="name">res</span><span class="punctuation">[</span><span class="literal string">'standard error'</span><span class="punctuation">],</span> <span class="literal string">''</span><span class="punctuation">)</span>
+        <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">assertEqual</span><span class="punctuation">(</span><span class="name">res</span><span class="punctuation">[</span><span class="literal string">'generated figures'</span><span class="punctuation">],</span> <span class="punctuation">[])</span>
+        <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">assertEqual</span><span class="punctuation">(</span><span class="name">res</span><span class="punctuation">[</span><span class="literal string">'exceptions generated'</span><span class="punctuation">],</span> <span class="name builtin pseudo">None</span><span class="punctuation">)</span>
+
+    <span class="keyword">def</span> <span class="name function">test_simple_exception</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">):</span>
+        <span class="name">code</span> <span class="operator">=</span> <span class="literal string">&quot;raise ValueError('error')</span><span class="literal string escape">\n</span><span class="literal string">&quot;</span>
+        <span class="name">groups</span> <span class="operator">=</span> <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">generate_groups</span><span class="punctuation">(</span><span class="name">code</span><span class="punctuation">)</span>
+        <span class="name">group0</span> <span class="operator">=</span> <span class="name builtin">list</span><span class="punctuation">(</span><span class="name">groups</span><span class="punctuation">)[</span><span class="literal number integer">0</span><span class="punctuation">]</span>
+        <span class="keyword">with</span> <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">assertRaises</span><span class="punctuation">(</span><span class="name exception">ValueError</span><span class="punctuation">):</span>
+            <span class="name">group0</span><span class="operator">.</span><span class="name">execute</span><span class="punctuation">({},</span> <span class="name">MyPylabShow</span><span class="punctuation">())</span>
+
+    <span class="keyword">def</span> <span class="name function">test_main_section</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">):</span>
+        <span class="name">code</span> <span class="operator">=</span> <span class="literal string">&quot;if __name__ == '__main__':</span><span class="literal string escape">\n\t</span><span class="literal string">print(5)</span><span class="literal string escape">\n</span><span class="literal string">&quot;</span>
+        <span class="name">groups</span> <span class="operator">=</span> <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">generate_groups</span><span class="punctuation">(</span><span class="name">code</span><span class="punctuation">)</span>
+        <span class="name">group0</span> <span class="operator">=</span> <span class="name builtin">list</span><span class="punctuation">(</span><span class="name">groups</span><span class="punctuation">)[</span><span class="literal number integer">0</span><span class="punctuation">]</span>
+        <span class="name">glob</span> <span class="operator">=</span> <span class="punctuation">{}</span>
+        <span class="keyword">exec</span><span class="punctuation">(</span><span class="literal string">'__name__ = &quot;__main__&quot;'</span><span class="punctuation">,</span> <span class="name">glob</span><span class="punctuation">)</span>
+        <span class="name">res</span> <span class="operator">=</span> <span class="name">group0</span><span class="operator">.</span><span class="name">execute</span><span class="punctuation">(</span><span class="name">glob</span><span class="punctuation">,</span> <span class="name">MyPylabShow</span><span class="punctuation">())</span>
+        <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">assertEqual</span><span class="punctuation">(</span><span class="name">res</span><span class="punctuation">[</span><span class="literal string">'standard output'</span><span class="punctuation">],</span> <span class="literal string">'5</span><span class="literal string escape">\n</span><span class="literal string">'</span><span class="punctuation">)</span>
+
+    <span class="keyword">def</span> <span class="name function">test_grouping_if_else</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">):</span>
+        <span class="name">groups</span> <span class="operator">=</span> <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">generate_groups</span><span class="punctuation">(</span><span class="name">source_test_if_else</span><span class="punctuation">)</span>
+        <span class="name">groups</span> <span class="operator">=</span> <span class="name builtin">list</span><span class="punctuation">(</span><span class="name">groups</span><span class="punctuation">)</span>
+        <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">assertEqual</span><span class="punctuation">(</span><span class="name builtin">len</span><span class="punctuation">(</span><span class="name">groups</span><span class="punctuation">),</span> <span class="literal number integer">1</span><span class="punctuation">)</span>
+
+    <span class="keyword">def</span> <span class="name function">test_grouping_for_else</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">):</span>
+        <span class="name">groups</span> <span class="operator">=</span> <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">generate_groups</span><span class="punctuation">(</span><span class="name">source_test_for_else</span><span class="punctuation">)</span>
+        <span class="name">groups</span> <span class="operator">=</span> <span class="name builtin">list</span><span class="punctuation">(</span><span class="name">groups</span><span class="punctuation">)</span>
+        <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">assertEqual</span><span class="punctuation">(</span><span class="name builtin">len</span><span class="punctuation">(</span><span class="name">groups</span><span class="punctuation">),</span> <span class="literal number integer">1</span><span class="punctuation">)</span>
+
+    <span class="keyword">def</span> <span class="name function">test_grouping_try_except</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">):</span>
+        <span class="name">groups</span> <span class="operator">=</span> <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">generate_groups</span><span class="punctuation">(</span><span class="name">source_test_try_except</span><span class="punctuation">)</span>
+        <span class="name">groups</span> <span class="operator">=</span> <span class="name builtin">list</span><span class="punctuation">(</span><span class="name">groups</span><span class="punctuation">)</span>
+        <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">assertEqual</span><span class="punctuation">(</span><span class="name builtin">len</span><span class="punctuation">(</span><span class="name">groups</span><span class="punctuation">),</span> <span class="literal number integer">1</span><span class="punctuation">)</span>
+
+    <span class="keyword">def</span> <span class="name function">test_grouping_decorator</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">):</span>
+        <span class="name">groups</span> <span class="operator">=</span> <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">generate_groups</span><span class="punctuation">(</span><span class="name">source_grouping_decorator</span><span class="punctuation">)</span>
+        <span class="name">groups</span> <span class="operator">=</span> <span class="name builtin">list</span><span class="punctuation">(</span><span class="name">groups</span><span class="punctuation">)</span>
+        <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">assertEqual</span><span class="punctuation">(</span><span class="name builtin">len</span><span class="punctuation">(</span><span class="name">groups</span><span class="punctuation">),</span> <span class="literal number integer">1</span><span class="punctuation">)</span>
+
+    <span class="keyword">def</span> <span class="name function">test_divide_in_lines</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">):</span>
+        <span class="name">code</span> <span class="operator">=</span> <span class="literal string">&quot;if __name__ == '__main__':</span><span class="literal string escape">\n\t</span><span class="literal string">print(5)</span><span class="literal string escape">\n</span><span class="literal string">&quot;</span>
+        <span class="name">groups</span> <span class="operator">=</span> <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">generate_groups</span><span class="punctuation">(</span><span class="name">code</span><span class="punctuation">)</span>
+        <span class="name">code_str</span> <span class="operator">=</span> <span class="name">StringIO</span><span class="punctuation">(</span><span class="name">code</span><span class="punctuation">)</span>
+        <span class="name">lines_expected</span> <span class="operator">=</span> <span class="name">_generate_logical_lines</span><span class="punctuation">(</span><span class="name">code_str</span><span class="operator">.</span><span class="name">readline</span><span class="punctuation">)</span>
+        <span class="name">lines_obtained</span> <span class="operator">=</span> <span class="name builtin">sum</span><span class="punctuation">([</span><span class="name">group</span><span class="operator">.</span><span class="name">lines</span> <span class="keyword">for</span> <span class="name">group</span> <span class="operator word">in</span> <span class="name">groups</span><span class="punctuation">],</span> <span class="punctuation">[])</span>
+        <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">assertEqual</span><span class="punctuation">(</span><span class="name">lines_expected</span><span class="punctuation">,</span> <span class="name">lines_obtained</span><span class="punctuation">)</span>
+
+    <span class="keyword">def</span> <span class="name function">test_docstring_extraction_with_comments</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">):</span>
+        <span class="name">origin</span> <span class="operator">=</span> <span class="name">StringIO</span><span class="punctuation">(</span><span class="name">source_docstring_extraction_with_comments</span><span class="punctuation">)</span><span class="operator">.</span><span class="name">readline</span>
+        <span class="name">groups</span> <span class="operator">=</span> <span class="name builtin">list</span><span class="punctuation">(</span><span class="name">CodeGroup</span><span class="operator">.</span><span class="name">iterate_groups_from_source</span><span class="punctuation">(</span><span class="name">origin</span><span class="punctuation">))</span>
+        <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">assertEqual</span><span class="punctuation">(</span><span class="name builtin">len</span><span class="punctuation">(</span><span class="name">groups</span><span class="punctuation">),</span> <span class="literal number integer">1</span><span class="punctuation">)</span>
+        <span class="name">group0</span> <span class="operator">=</span> <span class="name">groups</span><span class="punctuation">[</span><span class="literal number integer">0</span><span class="punctuation">]</span>
+        <span class="name">obtained</span> <span class="operator">=</span> <span class="name">group0</span><span class="operator">.</span><span class="name">extract_docstrings</span><span class="punctuation">()[</span><span class="literal number integer">0</span><span class="punctuation">]</span><span class="operator">.</span><span class="name">strip</span><span class="punctuation">()</span>
+        <span class="name">obtained</span> <span class="operator">=</span> <span class="name">_normalize_str</span><span class="punctuation">(</span><span class="name">obtained</span><span class="punctuation">)</span>
+        <span class="name">expected</span> <span class="operator">=</span> <span class="name">_normalize_str</span><span class="punctuation">(</span><span class="name">expected_docstring_extraction_with_comments</span><span class="punctuation">)</span>
+        <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">assertEqual</span><span class="punctuation">(</span><span class="name">obtained</span><span class="punctuation">,</span> <span class="name">expected</span><span class="punctuation">)</span>
+
+    <span class="keyword">def</span> <span class="name function">test_title_in_warnings</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">):</span>
+        <span class="name">glob</span> <span class="operator">=</span> <span class="punctuation">{}</span>
+        <span class="keyword">exec</span><span class="punctuation">(</span><span class="literal string">'import sys'</span><span class="punctuation">,</span> <span class="name">glob</span><span class="punctuation">)</span>
+        <span class="name">code</span> <span class="operator">=</span> <span class="literal string">&quot;print('=================', file=sys.stderr)</span><span class="literal string escape">\n</span><span class="literal string">&quot;</span>
+        <span class="name">group0</span> <span class="operator">=</span> <span class="name builtin">list</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">generate_groups</span><span class="punctuation">(</span><span class="name">code</span><span class="punctuation">))[</span><span class="literal number integer">0</span><span class="punctuation">]</span>
+        <span class="name">group0</span><span class="operator">.</span><span class="name">execute</span><span class="punctuation">(</span><span class="name">glob</span><span class="punctuation">,</span> <span class="name">MyPylabShow</span><span class="punctuation">())</span>
+        <span class="name">obtained</span> <span class="operator">=</span> <span class="name">group0</span><span class="operator">.</span><span class="name">compile</span><span class="punctuation">(</span><span class="literal string">'.'</span><span class="punctuation">)</span>
+        <span class="name">obtained</span> <span class="operator">=</span> <span class="name">_normalize_str</span><span class="punctuation">(</span><span class="name">obtained</span><span class="punctuation">)</span>
+        <span class="name">expected</span> <span class="operator">=</span> <span class="name">_normalize_str</span><span class="punctuation">(</span><span class="name">expected_title_in_warnings</span><span class="punctuation">)</span>
+        <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">assertEqual</span><span class="punctuation">(</span><span class="name">obtained</span><span class="punctuation">,</span> <span class="name">expected</span><span class="punctuation">)</span>
+</pre>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<pre class="code python literal-block">
+<span class="keyword">def</span> <span class="name function">generate_groups</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">,</span> <span class="name">source_code</span><span class="punctuation">):</span>
+</pre>
+<p class="last">generates the groups from the given source code
+boilerplate code</p>
+</div>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<pre class="code python literal-block">
+<span class="keyword">def</span> <span class="name function">test_is_docstring_1</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">):</span>
+</pre>
+<p class="last">On the given source code, check which are proper strings that
+will be Weaved out.</p>
+</div>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<pre class="code python literal-block">
+<span class="keyword">def</span> <span class="name function">test_recomposition_trailing_white_line</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">):</span>
+</pre>
+<p>if the source file has no trailing white line the reconstructed
+source code correspond to the original.
+No garantee if it is not following the proper format</p>
+<p class="last">If it is missing the last newline, it is going to miss the last
+group!</p>
+</div>
+<pre class="code python literal-block">
+<span class="comment"># %%</span>
+
+<span class="keyword">if</span> <span class="name">__name__</span> <span class="operator">==</span> <span class="literal string">'__main__'</span><span class="punctuation">:</span>
+    <span class="keyword">if</span> <span class="name builtin">len</span><span class="punctuation">(</span><span class="name">sys</span><span class="operator">.</span><span class="name">argv</span><span class="punctuation">)</span> <span class="operator">==</span> <span class="literal number integer">1</span><span class="punctuation">:</span>
+        <span class="keyword">print</span><span class="punctuation">(</span><span class="literal string">'running it with empty arguments runs the tests'</span><span class="punctuation">)</span>
+        <span class="keyword">print</span><span class="punctuation">(</span><span class="literal string">'the first argument is the script you want to compile'</span><span class="punctuation">)</span>
+        <span class="keyword">print</span><span class="punctuation">(</span><span class="literal string">'other arguments are passed as argv to the script'</span><span class="punctuation">)</span>
+        <span class="name">unittest</span><span class="operator">.</span><span class="name">main</span><span class="punctuation">()</span>
+    <span class="keyword">else</span><span class="punctuation">:</span>
+        <span class="name">input_file</span> <span class="operator">=</span> <span class="name">sys</span><span class="operator">.</span><span class="name">argv</span><span class="punctuation">[</span><span class="literal number integer">1</span><span class="punctuation">]</span>
+        <span class="name">input_file</span> <span class="operator">=</span> <span class="name">os</span><span class="operator">.</span><span class="name">path</span><span class="operator">.</span><span class="name">normpath</span><span class="punctuation">(</span><span class="name">input_file</span><span class="punctuation">)</span>
+        <span class="name">base_dir</span> <span class="operator">=</span> <span class="name">os</span><span class="operator">.</span><span class="name">path</span><span class="operator">.</span><span class="name">dirname</span><span class="punctuation">(</span><span class="name">input_file</span><span class="punctuation">)</span>
+        <span class="name">filename</span> <span class="operator">=</span> <span class="name">os</span><span class="operator">.</span><span class="name">path</span><span class="operator">.</span><span class="name">basename</span><span class="punctuation">(</span><span class="name">input_file</span><span class="punctuation">)</span>
+        <span class="name">output_dir</span> <span class="operator">=</span> <span class="name">os</span><span class="operator">.</span><span class="name">path</span><span class="operator">.</span><span class="name">join</span><span class="punctuation">(</span><span class="name">base_dir</span><span class="punctuation">,</span> <span class="literal string">'compiled_{}'</span><span class="operator">.</span><span class="name">format</span><span class="punctuation">(</span><span class="name">filename</span><span class="punctuation">))</span>
+        <span class="name">output_dir</span> <span class="operator">=</span> <span class="name">os</span><span class="operator">.</span><span class="name">path</span><span class="operator">.</span><span class="name">normpath</span><span class="punctuation">(</span><span class="name">output_dir</span><span class="punctuation">)</span>
+        <span class="keyword">print</span><span class="punctuation">(</span><span class="name">input_file</span><span class="punctuation">,</span> <span class="name">output_dir</span><span class="punctuation">,</span> <span class="name">sys</span><span class="operator">.</span><span class="name">argv</span><span class="punctuation">[</span><span class="literal number integer">2</span><span class="punctuation">:])</span>
+        <span class="name">total_path_in</span> <span class="operator">=</span> <span class="name">os</span><span class="operator">.</span><span class="name">path</span><span class="operator">.</span><span class="name">join</span><span class="punctuation">(</span><span class="name">base_dir</span><span class="punctuation">,</span> <span class="name">input_file</span><span class="punctuation">)</span>
+        <span class="name">argv</span> <span class="operator">=</span> <span class="punctuation">[</span><span class="name">os</span><span class="operator">.</span><span class="name">path</span><span class="operator">.</span><span class="name">abspath</span><span class="punctuation">(</span><span class="name">total_path_in</span><span class="punctuation">)]</span> <span class="operator">+</span> <span class="name">sys</span><span class="operator">.</span><span class="name">argv</span><span class="punctuation">[</span><span class="literal number integer">2</span><span class="punctuation">:]</span>
+        <span class="name">run_file</span><span class="punctuation">(</span><span class="name">os</span><span class="operator">.</span><span class="name">path</span><span class="operator">.</span><span class="name">abspath</span><span class="punctuation">(</span><span class="name">total_path_in</span><span class="punctuation">),</span> <span class="name">output_dir</span><span class="punctuation">,</span> <span class="name">argv</span><span class="punctuation">)</span>
+</pre>
+<div class="warning">
+<p class="first admonition-title">Warning</p>
+<pre class="last literal-block">
+............
+----------------------------------------------------------------------
+Ran 12 tests in 0.003s
+
+OK
+</pre>
+</div>
+<pre class="literal-block">
+running it with empty arguments runs the tests
+the first argument is the script you want to compile
+other arguments are passed as argv to the script
+</pre>
+</div>
+</body>
+</html>
+
