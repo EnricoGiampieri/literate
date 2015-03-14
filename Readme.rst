@@ -118,4 +118,30 @@ Known issues
 * each figure can only be shown once, even with multiple call to the fig.show function.
 * no configuration, the script work *as it is*
 * the test suite is not yet complete
-* it should intercept also savefigs commands from pylab
+
+False Issues
+~~~~~~~~~~~~~~~~~~~~~~
+The following are intentional choices and not bugs:
+
+Exception raised and not sandboxed:
+    the possible exceptions that the code throws are not shielded, but rather the whole system crash. Fail early and loudly, remember?
+    It is better to crash the program than to try to guess what the use desired behavior should be, and continuing the execution after an exception could lead to a whole new range
+    of problems. The easiest and more reliable solution is for the user to understand why ones code is raising something unexpected. Of course if the code would normally
+    not raise an exception but does it because of the sandbox, that is a bug (unless you are fiddling with pylab in an interactive way, then you asked for it)
+    
+Docstring inside blocks maintained and then rendered after the code:
+    The goal of literale programming is to help with scientific reproducibility. To do this, the report should contains code that is equivalent to the one that got executed by the writer.
+    Fiddling with the docstrings in the blocks of code would make that code not easy to reproduce, as it would break the block flux.
+    
+Intercepting savefig:
+    *Explicit is better than implicit*. The request of showing a figure is an explicit act, and the program should not try to guess if the user want the figure shown or not on an explicit save.
+    If the user desire so, it can insert a link in the text that will show the figure as one desire, and where one desires.
+   
+no python 2 support:
+    move on mate, it's 2015.
+    Jokes aside, supporting python 2 natively is an hard work, and I'm not familiar with it. If you know how to do it, patches (not ugly one) to add the support are welcome.
+    I don't think that cross-compatibility between versions will ever be possible
+   
+No markup fiddling:
+    Again, guessing the desire of the user it's harder and more error prone than simply letting one format the code as one decides, without trying to second guess the interference from the program side.
+    
