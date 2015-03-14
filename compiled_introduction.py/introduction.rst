@@ -60,6 +60,8 @@ the script will execute as it was launched with::
     
     import sys
     
+
+
 .. code:: python
 
     
@@ -72,7 +74,7 @@ the script will execute as it was launched with::
 ::
 
     this is inside the main loop
-    ['/home/PERSONALE/enrico.giampieri2/progetti/literate.py/introduction.py', '-nope']
+    ['/home/PERSONALE/enrico.giampieri2/progetti/literate.py/introduction.py']
     
 
 note that each block of code is represented with a different gray line.
@@ -112,6 +114,8 @@ it will not be recognized as a piece of documentation.
     """this is a regular string, not a formatted one
     """;
     
+
+
 the library should be able to distinguish regulare output (stdout)
 and error output (stderr) and represent them accordingly
 
@@ -125,8 +129,10 @@ and error output (stderr) and represent them accordingly
 
 .. warning::
 
-    capture this line!
-    
+    ::
+
+        capture this line!
+        
 
 It does not catch exceptions. Your code is supposed to work correctly.
 If your code run, then it should be compiled without any problems.
@@ -166,20 +172,24 @@ same properties of the code while showing the correct formatted docstrings.
 
     this function does nothing, but has the interesting math property:
     
-        .. math::
+    .. math::
     
-            |x| * 0 = |x*0|
+        |x| * 0 = |x*0|
         
+
 
 
 .. note::
 
     .. code:: python
 
-        def my_fun2():
+            def my_fun2():
 
     nested functions and docstring are handled without problems
             
+
+
+
 
 
 
@@ -194,18 +204,26 @@ configurazione in the appropriate way
     
     import pylab
     
+
+
 .. code:: python
 
     fig, ax = pylab.subplots(1, 1, figsize=(8, 4))
     
+
+
 .. code:: python
 
     x = pylab.linspace(0, 10, 101)
     
+
+
 .. code:: python
 
     ax.plot(x, x**2)
     
+
+
 .. code:: python
 
     fig.show()
@@ -226,6 +244,8 @@ it will not appear twice
     
     pylab.show()
     
+
+
 if external libraries are used, they interact in the expected way
 
 
@@ -235,14 +255,20 @@ if external libraries are used, they interact in the expected way
     
     import seaborn as sns
     
+
+
 .. code:: python
 
     pylab.figure()
     
+
+
 .. code:: python
 
     pylab.scatter(pylab.randn(100), pylab.randn(100))
     
+
+
 .. code:: python
 
     pylab.show()
@@ -261,31 +287,45 @@ show, as it would be expected
     
     fig, ax = pylab.subplots(1, 1, figsize=(8, 4))
     
+
+
 .. code:: python
 
     x = pylab.linspace(0, 10, 101)
     
+
+
 .. code:: python
 
     ax.plot(x, x**2, color='r')
     
+
+
 .. code:: python
 
     
     import numpy as np
     
+
+
 .. code:: python
 
     fig, ax = pylab.subplots(1, 1, figsize=(8, 4))
     
+
+
 .. code:: python
 
     x = pylab.linspace(0, 10, 101)
     
+
+
 .. code:: python
 
     ax.plot(x, np.cos(x), color='g')
     
+
+
 .. code:: python
 
     
