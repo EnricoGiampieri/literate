@@ -6,15 +6,13 @@ Created on Tue Feb 10 20:34:09 2015
 """
 
 # %%
-import itertools as it
-import tokenize
-from io import StringIO, BytesIO
-from itertools import groupby
 from contextlib import contextmanager
-import sys
 from docutils.core import publish_parts
+from io import StringIO, BytesIO
+from itertools import groupby, dropwhile, accumulate
 import os
-
+import sys
+import tokenize
 
 # %%
 # this wrap the show function and keeps track of the last created plot
@@ -83,7 +81,7 @@ def _evaluate_indent_variation(token_seq):
     down = sum(token.type == tokenize.DEDENT for token in token_seq)
     return up-down
 
-_ignorable_tokens = [tokenize.INDENT,
+_IGNORABLE_TOKENS = [tokenize.INDENT,
                      tokenize.DEDENT,
                      tokenize.COMMENT,
                      tokenize.NEWLINE,
@@ -100,7 +98,7 @@ def _is_continued_block(token_line):
     This should be a separate function at a certain point...
     """
     for token in token_line:
-        if token.type in _ignorable_tokens:
+        if token.type in _IGNORABLE_TOKENS:
             continue
         elif token.type == tokenize.NAME:
             name = token.string
@@ -122,7 +120,7 @@ def _is_docstring(token_line):
     is_string = True
     content = ""
     for token in token_line:
-        if token.type not in _ignorable_tokens + [tokenize.STRING]:
+        if token.type not in _IGNORABLE_TOKENS + [tokenize.STRING]:
             is_string = False
             break
         elif token.type == tokenize.STRING:
@@ -133,7 +131,7 @@ def _is_docstring(token_line):
 def _is_block_start(token_line):
     reversed_line = reversed(token_line)
     for token in reversed_line:
-        if token.type in _ignorable_tokens:
+        if token.type in _IGNORABLE_TOKENS:
             continue
         elif token.type == tokenize.OP and token.string == ':':
             return True
@@ -214,7 +212,7 @@ class CodeGroup(object):
         groups_lines = tokenize.untokenize(self.tokens)
         # remove the superfluous lines at the beginning due
         # to how untokenize work join them together again
-        groups_lines = it.dropwhile(is_whiteline, groups_lines.split('\n'))
+        groups_lines = dropwhile(is_whiteline, groups_lines.split('\n'))
         groups_lines = list(groups_lines)
         # this final bit is required to assure that the combination
         # of the various groups reconstruct the original source code
@@ -322,12 +320,12 @@ class CodeGroup(object):
         return compiled_rst
 
     @classmethod
-    def iterate_groups_from_source(group_cls, readline):
+    def iterate_groups_from_source(cls, readline):
         lines = _generate_logical_lines(readline)
         # for each line, determins its level of variation of indentation
         var_indent_lev = map(_evaluate_indent_variation, lines)
         # accumulate to obtain the total one
-        indent_levels = it.accumulate(var_indent_lev)
+        indent_levels = accumulate(var_indent_lev)
         # this checks is the line starts with a decorator
         is_decorator = lambda lg: lg[-1].line.strip().startswith('@')
         last_group = []
@@ -344,7 +342,7 @@ class CodeGroup(object):
                 elif _is_continued_block(line):
                     last_group.extend(line)
                 else:
-                    new_group = group_cls(last_group, last_created_group)
+                    new_group = cls(last_group, last_created_group)
                     last_created_group = new_group
                     yield new_group
                     last_group = line.copy()
@@ -353,7 +351,7 @@ class CodeGroup(object):
                 last_group.extend(line)
         # if the last group is not closed, put it with the others
         if last_group:
-            new_group = group_cls(last_group, last_created_group)
+            new_group = cls(last_group, last_created_group)
             last_created_group = new_group
             yield new_group
 
@@ -406,9 +404,6 @@ def run_file(input_file, output_dir, argv):
     with open(filename_complete_html, 'wt') as html_file:
         print(H, file=html_file)
     return True
-
-
-
 
 # %%
 # #############################################################################
@@ -506,7 +501,6 @@ class test_Group(unittest.TestCase):
         If it is missing the last newline, it is going to miss the last
         group!
         """
-        # FIXME: it need to manage correctly the last newline
         groups = self.generate_groups(source_test_1)
         generated = "".join(str(g) for g in groups)
         self.assertEqual(generated, source_test_1)
