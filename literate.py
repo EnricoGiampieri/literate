@@ -1,18 +1,22 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Feb 10 20:34:09 2015
+==============
+Literate
+==============
 
-@author: EnricoGiampieri
+
+:Author: EnricoGiampieri
 """
 
 # %%
 from contextlib import contextmanager
 from docutils.core import publish_parts
 from io import StringIO, BytesIO
-from itertools import groupby, dropwhile, accumulate
+from itertools import groupby, dropwhile, accumulate, takewhile
 import os
 import sys
 import tokenize
+
 
 # %%
 # this wrap the show function and keeps track of the last created plot
@@ -91,6 +95,7 @@ _IGNORABLE_TOKENS = [tokenize.INDENT,
                      ]
 
 
+# %%
 def _is_continued_block(token_line):
     """this recognize if the block is an else or similar, that follow
     another block even if it is on the same line.
@@ -111,6 +116,7 @@ def _is_continued_block(token_line):
     return False
 
 
+# %%
 def _is_docstring(token_line):
     """consider a docstring a string isolated from the rest
     without lines of codes around, but possible with comments.
@@ -128,6 +134,7 @@ def _is_docstring(token_line):
     return content if is_string else ""
 
 
+# %%
 def _is_block_start(token_line):
     reversed_line = reversed(token_line)
     for token in reversed_line:
@@ -141,9 +148,38 @@ def _is_block_start(token_line):
 
 
 # %%
+def _equalize_docstring(docstring):
+    """this functions should take a docstring, that has the line
+    following the first indented, and remove the beginning space common
+    to all the lines, leaving the first one unmodified
+    """
+    lines = list(docstring.splitlines())
+    # if there is a null string or a single line
+    # no modifications are required
+    if len(lines) <= 1:
+        return docstring
+    first_line = lines[0]
+    lines = lines[1:]
+
+    def count_indent(line):
+        is_whitespace = lambda c: c in [' ', '\t']
+        return len([char for char in takewhile(is_whitespace, line)])
+
+    indents = [count_indent(line) for line in lines if line.strip()]
+    min_indent = min(indents) if indents else 0
+    lines = [line[min_indent:] if line.strip() else line for line in lines]
+    lines = [first_line] + lines
+    docstring = "\n".join(lines)
+    return docstring
+
+
+# %%
 def _generate_logical_lines(readline):
     """takes a readline from a file and generates a sequence of
     logically complete lines of code.
+
+    it can also take a list of tokens directly.
+
     """
     # split the lines in tokens
     if callable(readline):
@@ -169,7 +205,7 @@ class CodeGroup(object):
     def __init__(self, block_lines, previous_block=None):
         """the input should be a list of lists of tokens
 
-        ech list is a logical line"""
+        each list is a logical line"""
         self.tokens = block_lines
         self.previous = previous_block
         self.following = None
@@ -197,13 +233,20 @@ class CodeGroup(object):
                 prev_line = self.lines[idx-1]
                 if not _is_block_start(prev_line):
                     continue
-                line_str_pre = str(self.__class__(prev_line)).strip()
+                line_str_pre = str(self.__class__(prev_line))
                 line_str = eval(str(self.__class__(line)))
-                docstring_text = ".. note::\n\n\t.. code:: python\n\n\t\t"
-                docstring_text += line_str_pre + "\n\n"
+                docstring_text = ".. note::\n\n\t.. code:: python\n\n"
+
+                splitlines = line_str_pre.splitlines()
+                splitlines = (line for line in splitlines if line.strip())
+                s = "\n".join('\t\t'+line for line in splitlines)
+                docstring_text += s + '\n\n'
+
+                line_str = _equalize_docstring(line_str)
                 splitlines = line_str.splitlines()
                 s = "\n".join('\t'+int_line for int_line in splitlines)
-                docstring_text += s + '\n'
+                docstring_text += s + '\n\n'
+
                 docstrings.append(docstring_text.replace('\t', '    '))
         return docstrings
 
@@ -372,8 +415,9 @@ def run_file(input_file, output_dir, argv):
 
         pylab_show_cage = MyPylabShow()
         for group in groups:
-            group.execute(glob, pylab_show_cage)
             # print(str(group))
+            group.execute(glob, pylab_show_cage)
+
             # print('-------------------------')
             # print(group.results)
             # print('=========================')
@@ -388,6 +432,7 @@ def run_file(input_file, output_dir, argv):
                 imported_modules.add(value)
         for module in imported_modules:
             pass  # print(module.__name__)
+
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
@@ -474,7 +519,35 @@ def f():
         pass
 '''
 
+# %%
+source_docstring_extraction_with_comments = '''
+#comment 1
+#comment 2
+def f():
+    """docstring
+    second line
 
+    third line
+    """
+    pass
+#comment
+'''
+
+expected_docstring_extraction_with_comments = '''.. note::
+
+    .. code:: python
+
+        #comment 1
+        #comment 2
+        def f():
+
+    docstring second line
+
+    third line
+'''
+
+
+# %%
 class test_Group(unittest.TestCase):
 
     def generate_groups(self, source_code):
@@ -526,7 +599,9 @@ class test_Group(unittest.TestCase):
         code = "if __name__ == '__main__':\n\tprint(5)\n"
         groups = self.generate_groups(code)
         group0 = list(groups)[0]
-        res = group0.execute({}, MyPylabShow())
+        glob = {}
+        exec('__name__ = "__main__"', glob)
+        res = group0.execute(glob, MyPylabShow())
         self.assertEqual(res['standard output'], '5\n')
 
     def test_grouping_if_else(self):
@@ -557,6 +632,17 @@ class test_Group(unittest.TestCase):
         lines_obtained = sum([group.lines for group in groups], [])
         self.assertEqual(lines_expected, lines_obtained)
 
+    def test_docstring_extraction_with_comments(self):
+        origin = StringIO(source_docstring_extraction_with_comments).readline
+        groups = list(CodeGroup.iterate_groups_from_source(origin))
+        self.assertEqual(len(groups), 1)
+        group0 = groups[0]
+        obtained = group0.extract_docstrings()[0].strip()
+        expected = expected_docstring_extraction_with_comments
+        expected = [line.rstrip() for line in expected.splitlines()]
+        expected = '\n'.join(expected)
+        self.assertEqual(obtained, expected)
+
 # %%
 
 if __name__ == '__main__':
@@ -564,6 +650,7 @@ if __name__ == '__main__':
         print('running it with empty arguments runs the tests')
         print('the first argument is the script you want to compile')
         print('other arguments are passed as argv to the script')
+        # prevent the call of sys.exit
         unittest.main()
     else:
         input_file = sys.argv[1]
