@@ -3,6 +3,11 @@ Introduction to literate.py
 ===========================
 :Authors: Enrico Giampieri
 
+.. contents:: :depth: 1
+
+Intro
+-------------------
+
 *Literate.py* is a simple python library that is used to compile
 normal python script into scienfic reports, with an approach
 similar to that commonly refered as **literate programming**.
@@ -129,6 +134,9 @@ Debugging an error from the sandboxed code it extremely hard,
 so to discourage the practice it raises the exception without any filtering,
 only with a reference to the code source that generate the error.
 
+Docstrings
+---------------
+
 the proper docstrings of functions or classes are included in the code
 and then rendered afterward. this will allow the system to maintain the
 same properties of the code while showing the correct formatted docstrings.
@@ -173,6 +181,10 @@ same properties of the code while showing the correct formatted docstrings.
     nested functions and docstring are handled without problems
             
 
+
+
+Pylab
+-----------------
 
 it can also capture matplotlib figures on the fly, maintaining all the
 configurazione in the appropriate way
