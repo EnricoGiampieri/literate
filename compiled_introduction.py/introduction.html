@@ -676,6 +676,9 @@ python introduction.py -nope
 <span class="keyword namespace">import</span> <span class="name namespace">sys</span>
 </pre>
 <pre class="code python literal-block">
+<span class="keyword namespace">import</span> <span class="name namespace">literate</span>
+</pre>
+<pre class="code python literal-block">
 <span class="keyword">if</span> <span class="name">__name__</span> <span class="operator">==</span> <span class="literal string">'__main__'</span><span class="punctuation">:</span>
     <span class="keyword">print</span><span class="punctuation">(</span><span class="literal string">&quot;this is inside the main loop&quot;</span><span class="punctuation">)</span>
     <span class="keyword">print</span><span class="punctuation">(</span><span class="name">sys</span><span class="operator">.</span><span class="name">argv</span><span class="punctuation">)</span>
@@ -777,16 +780,22 @@ configurazione in the appropriate way</p>
 <span class="name">ax</span><span class="operator">.</span><span class="name">plot</span><span class="punctuation">(</span><span class="name">x</span><span class="punctuation">,</span> <span class="name">x</span><span class="operator">**</span><span class="literal number integer">2</span><span class="punctuation">)</span>
 </pre>
 <pre class="code python literal-block">
-<span class="name">fig</span><span class="operator">.</span><span class="name">show</span><span class="punctuation">()</span>
+<span class="name">pylab</span><span class="operator">.</span><span class="name">show</span><span class="punctuation">()</span>
 </pre>
-<img alt="./figure_19_0.png" src="./figure_19_0.png" />
+<img alt="./figure_20_0.png" src="./figure_20_0.png" />
 <p>to show the plot it is necessary to explicitly call the show method,
-no shortcut available!</p>
-<p>but if you already have shown the figure (in this case the the <code>fig.show()</code>),
-it will not appear twice</p>
+no shortcut available!
+The show function show all the figure that has not already been shown,
+so calling it twice in a row will do nothing.</p>
 <pre class="code python literal-block">
 <span class="name">pylab</span><span class="operator">.</span><span class="name">show</span><span class="punctuation">()</span>
 </pre>
+<p>if you want to show a figure for the second time, you will have to call
+a specifi <code>figure.show</code>.</p>
+<pre class="code python literal-block">
+<span class="name">fig</span><span class="operator">.</span><span class="name">show</span><span class="punctuation">()</span>
+</pre>
+<img alt="./figure_24_0.png" src="./figure_24_0.png" />
 <p>if external libraries are used, they interact in the expected way</p>
 <pre class="code python literal-block">
 <span class="keyword namespace">import</span> <span class="name namespace">seaborn</span> <span class="keyword namespace">as</span> <span class="name namespace">sns</span>
@@ -800,7 +809,7 @@ it will not appear twice</p>
 <pre class="code python literal-block">
 <span class="name">pylab</span><span class="operator">.</span><span class="name">show</span><span class="punctuation">()</span>
 </pre>
-<img alt="./figure_26_0.png" src="./figure_26_0.png" />
+<img alt="./figure_29_0.png" src="./figure_29_0.png" />
 <p>multiple figures can be plotted all at the same time with a single
 show, as it would be expected</p>
 <pre class="code python literal-block">
@@ -827,8 +836,14 @@ show, as it would be expected</p>
 <pre class="code python literal-block">
 <span class="name">pylab</span><span class="operator">.</span><span class="name">show</span><span class="punctuation">()</span>
 </pre>
-<img alt="./figure_35_0.png" src="./figure_35_0.png" />
-<img alt="./figure_35_1.png" src="./figure_35_1.png" />
+<img alt="./figure_38_0.png" src="./figure_38_0.png" />
+<img alt="./figure_38_1.png" src="./figure_38_1.png" />
+<pre class="code python literal-block">
+<span class="keyword namespace">from</span> <span class="name namespace">sys</span> <span class="keyword namespace">import</span> <span class="name">stderr</span>
+</pre>
+<pre class="code python literal-block">
+<span class="keyword">print</span><span class="punctuation">(</span><span class="literal string">&quot;capture this line!&quot;</span><span class="punctuation">,</span> <span class="name builtin">file</span><span class="operator">=</span><span class="name">stderr</span><span class="punctuation">)</span>
+</pre>
 </div>
 </div>
 </body>

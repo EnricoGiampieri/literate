@@ -49,6 +49,7 @@ the script will execute as it was launched with::
 
 import sys
 
+import literate
 
 if __name__ == '__main__':
     print("this is inside the main loop")
@@ -74,7 +75,6 @@ it will not be recognized as a piece of documentation.
 """the library should be able to distinguish regulare output (stdout)
 and error output (stderr) and represent them accordingly
 """
-
 
 print("capture this line!", file=sys.stderr)
 
@@ -116,16 +116,22 @@ import pylab
 fig, ax = pylab.subplots(1, 1, figsize=(8, 4))
 x = pylab.linspace(0, 10, 101)
 ax.plot(x, x**2)
-fig.show()
+pylab.show()
+
 
 """to show the plot it is necessary to explicitly call the show method,
 no shortcut available!
+The show function show all the figure that has not already been shown,
+so calling it twice in a row will do nothing.
+"""
+pylab.show()
 
-but if you already have shown the figure (in this case the the :code:`fig.show()`),
-it will not appear twice
+"""if you want to show a figure for the second time, you will have to call
+a specifi :code:`figure.show`.
 """
 
-pylab.show()
+
+fig.show()
 
 """if external libraries are used, they interact in the expected way
 """
@@ -155,4 +161,5 @@ ax.plot(x, np.cos(x), color='g')
 pylab.show()
 
 
-
+from sys import stderr
+print("capture this line!", file=stderr)

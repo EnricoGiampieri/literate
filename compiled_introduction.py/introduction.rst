@@ -65,6 +65,12 @@ the script will execute as it was launched with::
 .. code:: python
 
     
+    import literate
+    
+
+
+.. code:: python
+
     
     if __name__ == '__main__':
         print("this is inside the main loop")
@@ -122,7 +128,6 @@ and error output (stderr) and represent them accordingly
 
 .. code:: python
 
-    
     
     print("capture this line!", file=sys.stderr)
     
@@ -226,24 +231,36 @@ configurazione in the appropriate way
 
 .. code:: python
 
-    fig.show()
+    pylab.show()
     
 
-.. image:: ./figure_19_0.png
+.. image:: ./figure_20_0.png
 
 
 to show the plot it is necessary to explicitly call the show method,
 no shortcut available!
+The show function show all the figure that has not already been shown,
+so calling it twice in a row will do nothing.
 
-but if you already have shown the figure (in this case the the :code:`fig.show()`),
-it will not appear twice
+
+.. code:: python
+
+    pylab.show()
+    
+
+
+if you want to show a figure for the second time, you will have to call
+a specifi :code:`figure.show`.
 
 
 .. code:: python
 
     
-    pylab.show()
     
+    fig.show()
+    
+
+.. image:: ./figure_24_0.png
 
 
 if external libraries are used, they interact in the expected way
@@ -274,7 +291,7 @@ if external libraries are used, they interact in the expected way
     pylab.show()
     
 
-.. image:: ./figure_26_0.png
+.. image:: ./figure_29_0.png
 
 
 
@@ -332,8 +349,22 @@ show, as it would be expected
     pylab.show()
     
 
-.. image:: ./figure_35_0.png
+.. image:: ./figure_38_0.png
 
-.. image:: ./figure_35_1.png
+.. image:: ./figure_38_1.png
+
+
+.. code:: python
+
+    
+    
+    from sys import stderr
+    
+
+
+.. code:: python
+
+    print("capture this line!", file=stderr)
+    
 
 

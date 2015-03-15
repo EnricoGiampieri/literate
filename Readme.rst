@@ -116,7 +116,7 @@ they get compiled as an html file for ease of presentation.
 Known issues
 ---------------------
 
-* each figure can only be shown once, even with multiple call to the fig.show function.
+* the various arguments of pylab.show are not yet supported, and the images are hardcoded in png format
 * no configuration, the script work *as it is*
 * the test suite is not yet complete
 
