@@ -428,7 +428,7 @@ class CodeGroup(object):
         """
         content = self.is_docstring()
         if content:
-            return content + '\n'
+            return (content + '\n', {})
 
         compiled_rst = ".. code:: python\n\n"
         indented_lines = ["    "+line for line in str(self).split('\n')]
@@ -458,15 +458,18 @@ class CodeGroup(object):
                     compiled_rst += "    "+line+'\n'
         if "generated figures" in self.results:
             figures = self.results["generated figures"]
+            figure_dict = {}
             for fig_idx, figure_bytes in enumerate(figures):
                 index = self.get_index()
                 f_name = "figure_{}_{}.png".format(index, fig_idx)
-                f_dir = os.path.join(output_dir, f_name)
-                with open(f_dir, 'wb') as file:
-                    file.write(figure_bytes.getvalue())
+                figure_dict[f_name] = figure_bytes
+                # f_dir = os.path.join(output_dir, f_name)
+                # with open(f_dir, 'wb') as file:
+                #     file.write(figure_bytes.getvalue())
                 f_link = os.path.join(os.path.curdir, f_name)
                 compiled_rst += ".. image:: "+str(f_link)+"\n\n"
-        return compiled_rst
+
+        return (compiled_rst, figure_dict)
 
     @classmethod
     def iterate_groups_from_source(cls, readline):
@@ -558,8 +561,17 @@ def run_file(input_file, output_dir, argv):
     f_base = os.path.basename(input_file)
     f_base = os.path.splitext(f_base)[0]
     filename_complete_rst = os.path.join(output_dir, '{}.rst'.format(f_base))
-    compiled_rst = "\n".join(str(group.compile(output_dir))
-                             for group in groups)
+    # compile all the block in rst and get the required figures to save
+    compile_results = [group.compile(output_dir) for group in groups]
+    # attach all the compiled strings for each block
+    compiled_rst = "\n".join(str(piece[0]) for piece in compile_results)
+    # saves all the figures as requested by each piece
+    for piece in compile_results:
+        for f_name, figure_bytes in piece[1].items():
+            f_dir = os.path.join(output_dir, f_name)
+            with open(f_dir, 'wb') as file:
+                file.write(figure_bytes.getvalue())
+
     with open(filename_complete_rst, 'wt') as rst_file:
         print(compiled_rst, file=rst_file)
 
@@ -795,7 +807,7 @@ class test_Group(unittest.TestCase):
         code = "print('=================', file=sys.stderr)\n"
         group0 = list(self.generate_groups(code))[0]
         group0.execute(glob, OutputCage())
-        obtained = group0.compile('.')
+        obtained = group0.compile('.')[0]
         obtained = _normalize_str(obtained)
         expected = _normalize_str(expected_title_in_warnings)
         self.assertEqual(obtained, expected)
