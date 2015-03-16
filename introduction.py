@@ -113,10 +113,11 @@ it can also capture matplotlib figures on the fly, maintaining all the
 configurazione in the appropriate way"""
 
 import pylab
+from pylab import show
 fig, ax = pylab.subplots(1, 1, figsize=(8, 4))
 x = pylab.linspace(0, 10, 101)
 ax.plot(x, x**2)
-pylab.show()
+show()
 
 
 """to show the plot it is necessary to explicitly call the show method,
@@ -140,7 +141,7 @@ fig.show()
 import seaborn as sns
 pylab.figure()
 pylab.scatter(pylab.randn(100), pylab.randn(100))
-pylab.show()
+show()
 
 
 
@@ -159,7 +160,3 @@ x = pylab.linspace(0, 10, 101)
 ax.plot(x, np.cos(x), color='g')
 
 pylab.show()
-
-
-from sys import stderr
-print("capture this line!", file=stderr)
